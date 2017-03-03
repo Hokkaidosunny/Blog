@@ -1,7 +1,7 @@
 {
-  "name": "reactApp",
+  "name": "Blog",
   "version": "1.0.0",
-  "description": "react app",
+  "description": "blog react app",
   "main": "./src/index.js",
   "scripts": {
     "start": "NODE_ENV=dev webpack-dev-server --host 0.0.0.0 --port 3000 --inline --hot",
@@ -26,6 +26,8 @@
     "eslint-config-ssj": "^1.0.1",
     "file-loader": "^0.10.1",
     "html-webpack-plugin": "^2.24.1",
+    "node-sass": "^4.5.0",
+    "sass-loader": "^6.0.2",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.1",
