@@ -3,11 +3,17 @@
   "version": "1.0.0",
   "description": "blog react app",
   "main": "./src/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hokkaidosunny/Blog.git"
+  },
   "scripts": {
     "start": "NODE_ENV=dev webpack-dev-server --host 0.0.0.0 --port 3000 --inline --hot",
     "build": "rm -rf build && NODE_ENV=pro webpack -p --progress --colors"
   },
   "dependencies": {
+    "bulma": "^0.3.2",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^5.0.3",
