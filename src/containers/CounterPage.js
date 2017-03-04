@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { increment, decrement } from '../actions/counter.js';
 import Counter from '../components/Counter.js';
-import '../style/counterpage.css';
+import '../style/counterpage.scss';
 
 class CounterPage extends Component {
   static propTypes = {

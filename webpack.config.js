@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin= require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const isDev = process.env.NODE_ENV === 'dev';
 const isPro = !isDev;
 
@@ -41,15 +41,29 @@ module.exports = {
         test: /\.css$/,
         loader: 'style-loader!css-loader'
       }, {
-        test: /\.js|jsx$/,
+        test: /\.(scss|sass)$/,
+        use: [{
+          loader: "style-loader"
+        }, {
+          loader: "css-loader"
+        }, {
+          loader: "sass-loader",
+          options: {
+            includePaths: [
+              path.join(__dirname, "node_modules/bulma")
+            ]
+          }
+        }]
+      }, {
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: "babel-loader"
       }, {
-        test: /\.(gif|jpg|png|woff|svg|eot|ttf)$/,
+        test: /\.(gif|jpg|jpeg|png|woff|svg|eot|ttf)$/,
         loader: 'url-loader?limit=50000'
       }
     ]
   },
   devtool: isDev ? 'cheap-module-eval-source-map' : 'cheap-module-source-map',
-  plugins: getPlugins(),
+  plugins: getPlugins()
 };
