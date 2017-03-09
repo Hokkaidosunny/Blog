@@ -18,6 +18,7 @@ function getPlugins() {
   if (isPro) {
     plugins.push(
       new webpack.optimize.UglifyJsPlugin({
+        sourceMap: true,
         compress: {
           warnings: false,  //no warnings
           drop_console: true  //no console
@@ -33,7 +34,9 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, '/dist/'),
-    filename: '[name].[hash].js'
+    filename: '[name].[hash].js',
+    chunkFilename: '[name].[hash].js',
+    sourceMapFilename: '[file].map'
   },
   module: {
     rules: [
@@ -64,6 +67,6 @@ module.exports = {
       }
     ]
   },
-  devtool: isDev ? 'cheap-module-eval-source-map' : 'cheap-module-source-map',
+  devtool: isDev ? 'cheap-module-source-map' : 'source-map',
   plugins: getPlugins()
 };
