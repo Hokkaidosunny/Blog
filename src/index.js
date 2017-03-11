@@ -28,7 +28,10 @@ const reducer = combineReducers({
   routing: routerReducer
 });
 
-const store = compose(
+//use chrome extension
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = composeEnhancers(
   applyMiddleware(thunk)
 )(createStore)(reducer);
 

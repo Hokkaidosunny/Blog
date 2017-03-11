@@ -14,7 +14,13 @@ class App extends Component {
       <div id='app'>
         <Nav />
         <Notification />
-        {this.props.page}
+        <div className='columns is-gapless'>
+          <div className='column is-2' />
+          <div className='column is-8'>
+            {this.props.page}
+          </div>
+          <div className='column is-2' />
+        </div>
         <Footer />
       </div>
     );
