@@ -60,6 +60,7 @@ export default class Nav extends Component {
 const styles = {
   nav: {
     position: 'fixed',
+    top: '0',
     width: '100%'
   }
 };
