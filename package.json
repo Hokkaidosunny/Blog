@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "bulma": "^0.3.2",
+    "fastclick": "^1.0.6",
     "normalize.css": "^5.0.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",

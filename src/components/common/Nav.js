@@ -61,6 +61,7 @@ const styles = {
   nav: {
     position: 'fixed',
     top: '0',
-    width: '100%'
+    width: '100%',
+    zIndex: '0'
   }
 };

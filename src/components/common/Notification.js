@@ -18,14 +18,16 @@ class Notification extends Component {
 
   render() {
     return this.props.showNotification ? (
-      <div className='columns is-gapless' style={styles.notification}>
-        <div className='column is-4' />
-        <div className="column is-4">
-          <div className="notification is-primary">
-            <button className="delete" onClick={() => {
-              this.props.hideNotification();
-            }} />
-            {this.props.msg}
+      <div style={styles.bg}>
+        <div className='columns is-gapless' style={styles.notification}>
+          <div className='column is-4' />
+          <div className="column is-4">
+            <div className="notification is-primary">
+              <button className="delete" onClick={() => {
+                this.props.hideNotification();
+              }} />
+              {this.props.msg}
+            </div>
           </div>
         </div>
       </div>
@@ -39,6 +41,14 @@ const styles = {
     top: '10rem',
     width: '100%',
     zIndex: '999'
+  },
+  bg: {
+    position: 'fixed',
+    top: '0',
+    bottom: '0',
+    width: '100%',
+    background: 'rgba(0,0,0,0.5)',
+    zIndex: '998'
   }
 };
 

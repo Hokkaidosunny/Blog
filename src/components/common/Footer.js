@@ -23,11 +23,10 @@ const Footer = () => {
   );
 };
 
-export default Footer;
-
-
 const styles = {
   footer: {
     paddingBottom: '3rem'
   }
 };
+
+export default Footer;
