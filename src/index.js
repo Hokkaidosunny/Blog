@@ -9,6 +9,7 @@ import { Router, hashHistory } from 'react-router';
 import reducers from './reducers/index.js';
 import routes from './routes.js';
 
+console.log(process.env.NODE_ENV);
 /** how it works
   React
     ↓
