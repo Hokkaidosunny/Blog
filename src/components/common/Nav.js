@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import cn from 'classnames';
 import headimg from '../../imgs/headimg.jpeg';
 
 export default class Nav extends Component {
@@ -12,7 +13,9 @@ export default class Nav extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      activeTab: 0
+    };
   }
 
   componentWillMount() {
@@ -22,6 +25,10 @@ export default class Nav extends Component {
   }
 
   componentWillUnmount() {
+  }
+
+  switchTab = (index) => {
+    this.setState({activeTab: index});
   }
 
   render() {
@@ -44,12 +51,20 @@ export default class Nav extends Component {
           </span>
 
           <div className="nav-right nav-menu">
-            <a className="nav-item is-tab is-active">
-              首页
-            </a>
-            <a className="nav-item is-tab">
-              分类
-            </a>
+            {
+              ['首页', '归档', '关于我'].map((item, index) => {
+                return (
+                  <a className={cn('nav-item', 'is-tab', {'is-active': this.state.activeTab == index})}
+                    key={index}
+                    onClick={() => {
+                      this.switchTab(index);
+                    }}
+                    >
+                    {item}
+                  </a>
+                );
+              })
+            }
           </div>
         </div>
       </nav>

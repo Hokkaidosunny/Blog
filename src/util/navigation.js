@@ -1,9 +1,9 @@
-import { hashHistory } from 'react-router';
+import { hashHistory as history } from 'react-router';
 
 export const goArticlePage = (articleId = 0) => {
-  hashHistory.push(`/article/${articleId}`);
+  history.push(`/article/${articleId}`);
 };
 
 export const goHomePage = () => {
-  hashHistory.push(`/home`);
+  history.push(`/home`);
 };
