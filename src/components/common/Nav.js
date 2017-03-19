@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import * as navigation from '../../util/navigation.js';
 import cn from 'classnames';
 import headimg from '../../imgs/headimg.jpeg';
 
@@ -29,6 +30,9 @@ export default class Nav extends Component {
 
   switchTab = (index) => {
     this.setState({activeTab: index});
+    if (index == 0) {
+      navigation.goHomePage();
+    }
   }
 
   render() {

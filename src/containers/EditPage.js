@@ -1,0 +1,49 @@
+import React, {Component, PropTypes} from 'react';
+import { connect } from 'react-redux';
+
+class EditPage extends Component {
+  static displayName = 'EditPage';
+
+  static propTypes = {
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="field margin-top-2">
+          <p className="control">
+            <input className="input" type="text" placeholder="标题" />
+          </p>
+        </div>
+        <div className="field margin-top-2">
+          <p className="control">
+            <input className="input" type="text" placeholder="标签" />
+          </p>
+        </div>
+        <div className="field margin-top-2">
+          <p className="control">
+            <textarea className="textarea" placeholder="Normal textarea" style={styles.textarea}></textarea>
+          </p>
+        </div>
+      </div>
+    );
+  }
+}
+
+function mapStateToProps(state) {
+  return {};
+}
+
+export default connect(mapStateToProps, null)(EditPage);
+
+
+const styles = {
+  textarea: {
+    height: '30rem'
+  }
+};

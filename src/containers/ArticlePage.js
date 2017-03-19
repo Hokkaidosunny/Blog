@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {showNotification} from '../actions/notification.js';
 
-import '../style/homePage.scss';
-
 class ArticlePage extends Component {
 
   componentDidMount() {

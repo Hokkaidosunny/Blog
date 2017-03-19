@@ -3,8 +3,6 @@ import ArticleInfo from '../components/home/ArticleInfo.js';
 import {connect} from 'react-redux';
 import {showNotification} from '../actions/notification.js';
 
-import '../style/homePage.scss';
-
 class HomePage extends Component {
 
   componentDidMount() {
@@ -16,8 +14,7 @@ class HomePage extends Component {
       <div className='homePage'>
         <div className='articles'>
           <ArticleInfo />
-          <ArticleInfo />
-          <ArticleInfo />
+
         </div>
       </div>
     );

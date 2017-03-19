@@ -26,7 +26,7 @@ export default class ArticleInfo extends Component {
 
   render() {
     return (
-      <div className='section' onClick={() => { goArticlePage(); }}>
+      <div className='section padding-1.5' onClick={() => { goArticlePage(); }}>
         <article className="media">
           <div className="media-content">
             <div className="content">

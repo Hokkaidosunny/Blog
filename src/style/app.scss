@@ -12,4 +12,22 @@
   padding-top: 4rem;
 }
 
+@each $le in 1, 1.5, 2, 2.5, 3 {
+  .margin-#{$le} {
+    margin: #{$le}rem;
+  }
+
+  .margin-top-#{$le} {
+    margin-top: #{$le}rem;
+  }
+
+  .padding-#{$le} {
+    padding: #{$le}rem;
+  }
+
+  .padding-bottom-#{$le} {
+    padding-bottom: #{$le}rem;
+  }
+}
+
 @import "bulma";
