@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import * as navigation from '../../util/navigation.js';
+import {connect} from 'react-redux';
+import { goHomePage, goEditPage} from '../../actions/navigations.js';
 import cn from 'classnames';
 import headimg from '../../imgs/headimg.jpeg';
 
-export default class Nav extends Component {
+class Nav extends Component {
   static displayName = 'Nav';
 
   static propTypes = {
@@ -14,24 +15,13 @@ export default class Nav extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      activeTab: 0
-    };
-  }
-
-  componentWillMount() {
-  }
-
-  componentDidMount() {
-  }
-
-  componentWillUnmount() {
+    this.state = {};
   }
 
   switchTab = (index) => {
     this.setState({activeTab: index});
     if (index == 0) {
-      navigation.goHomePage();
+      this.props.goHomePage();
     }
   }
 
@@ -55,26 +45,38 @@ export default class Nav extends Component {
           </span>
 
           <div className="nav-right nav-menu">
-            {
-              ['首页', '归档', '关于我'].map((item, index) => {
-                return (
-                  <a className={cn('nav-item', 'is-tab', {'is-active': this.state.activeTab == index})}
-                    key={index}
-                    onClick={() => {
-                      this.switchTab(index);
-                    }}
-                    >
-                    {item}
-                  </a>
-                );
-              })
-            }
+            <a className={cn('nav-item', 'is-tab', {'is-active': this.props.pathname == ('/' || '/home')})}
+              onClick={this.props.goHomePage}
+              >
+              首页
+            </a>
+            <a className={cn('nav-item', 'is-tab', {'is-active': this.props.pathname == '/edit'})}
+              onClick={this.props.goEditPage}
+              >
+              编辑
+            </a>
+            <a className={cn('nav-item', 'is-tab', {'is-active': this.props.pathname == '/me'})}
+              onClick={this.props.goHomePage}
+              >
+              关于我
+            </a>
           </div>
         </div>
       </nav>
     );
   }
 }
+
+function mapStateToProps(state, ownProps) {
+  return {
+    pathname: ownProps.location.pathname
+  };
+}
+
+export default connect(mapStateToProps, {
+  goHomePage,
+  goEditPage
+})(Nav);
 
 const styles = {
   nav: {

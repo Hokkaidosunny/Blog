@@ -6,13 +6,14 @@ import '../style/app.scss';
 
 class App extends Component {
   static propTypes = {
-    page: PropTypes.element
+    page: PropTypes.element,
+    location: PropTypes.object
   };
 
   render() {
     return (
       <div id='app'>
-        <Nav />
+        <Nav location={this.props.location} />
         <Notification />
         <div className='columns is-gapless'>
           <div className='column is-2' />

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { applyMiddleware, compose, createStore, combineReducers } from 'redux';
 import thunk from 'redux-thunk';  //use it for async action
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
 import { Router, hashHistory } from 'react-router';
 import reducers from './reducers/index.js';
 import routes from './routes.js';
@@ -28,12 +28,11 @@ const reducer = combineReducers({
   ...reducers,
   routing: routerReducer
 });
-
 //use chrome extension
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = composeEnhancers(
-  applyMiddleware(thunk)
+  applyMiddleware(thunk, routerMiddleware(hashHistory))
 )(createStore)(reducer);
 
 const history = syncHistoryWithStore(hashHistory, store);

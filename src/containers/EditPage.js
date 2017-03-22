@@ -27,7 +27,7 @@ class EditPage extends Component {
         </div>
         <div className="field margin-top-2">
           <p className="control">
-            <textarea className="textarea" placeholder="Normal textarea" style={styles.textarea}></textarea>
+            <textarea className="textarea" style={styles.textarea}></textarea>
           </p>
         </div>
       </div>
@@ -44,6 +44,6 @@ export default connect(mapStateToProps, null)(EditPage);
 
 const styles = {
   textarea: {
-    height: '30rem'
+    height: '20rem'
   }
 };
