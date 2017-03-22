@@ -1,7 +1,8 @@
 import React, {Component, PropTypes} from 'react';
-import {goArticlePage} from '../../util/navigation.js';
+import { connect } from 'react-redux';
+import {goArticlePage} from '../../actions/navigations.js';
 
-export default class ArticleInfo extends Component {
+class ArticleInfo extends Component {
   static displayName = 'ArticleInfo';
 
   static propTypes = {
@@ -15,18 +16,9 @@ export default class ArticleInfo extends Component {
     this.state = {};
   }
 
-  componentWillMount() {
-  }
-
-  componentDidMount() {
-  }
-
-  componentWillUnmount() {
-  }
-
   render() {
     return (
-      <div className='section padding-1.5' onClick={() => { goArticlePage(); }}>
+      <div className='section padding-1.5' onClick={() => { this.props.goArticlePage(); }}>
         <article className="media">
           <div className="media-content">
             <div className="content">
@@ -44,3 +36,12 @@ export default class ArticleInfo extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+  };
+}
+
+export default connect(mapStateToProps, {
+  goArticlePage
+})(ArticleInfo);

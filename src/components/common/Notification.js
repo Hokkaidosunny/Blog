@@ -35,6 +35,19 @@ class Notification extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  const {showNotification, level, msg} = state.notification;
+  return {
+    showNotification,
+    level,
+    msg
+  };
+}
+
+export default connect(mapStateToProps, {
+  hideNotification
+})(Notification);
+
 const styles = {
   notification: {
     position: 'fixed',
@@ -51,16 +64,3 @@ const styles = {
     zIndex: '998'
   }
 };
-
-function mapStateToProps(state) {
-  const {showNotification, level, msg} = state.notification;
-  return {
-    showNotification,
-    level,
-    msg
-  };
-}
-
-export default connect(mapStateToProps, {
-  hideNotification
-})(Notification);
