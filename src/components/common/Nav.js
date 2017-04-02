@@ -34,7 +34,7 @@ class Nav extends Component {
               <img src={headimg} />
             </a>
             <a className="nav-item">
-              Blog
+              <h4 className='title is-4'>ShenShuaijia</h4>
             </a>
           </div>
 
@@ -50,7 +50,7 @@ class Nav extends Component {
               >
               首页
             </a>
-            <a className={cn('nav-item', 'is-tab', {'is-active': this.props.pathname == '/edit'})}
+            {/* <a className={cn('nav-item', 'is-tab', {'is-active': this.props.pathname == '/edit'})}
               onClick={this.props.goEditPage}
               >
               编辑
@@ -59,7 +59,7 @@ class Nav extends Component {
               onClick={this.props.goHomePage}
               >
               关于我
-            </a>
+            </a> */}
           </div>
         </div>
       </nav>

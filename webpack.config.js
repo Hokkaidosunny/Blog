@@ -70,6 +70,9 @@ module.exports = {
       }, {
         test: /\.(gif|jpg|jpeg|png|woff|svg|eot|ttf)$/,
         loader: 'url-loader?limit=50000'
+      }, {
+        test: /\.md/,
+        loader: 'raw-loader'
       }
     ]
   },

@@ -23,11 +23,11 @@ class ArticleInfo extends Component {
           <div className="media-content">
             <div className="content">
               <p>
-                <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
-                <br />
+                <strong className='is-medium'>Source-map  </strong>
+                <small>3月21日</small>
+                {/* <br />
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
-                <br />
-                <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+                <br /> */}
               </p>
             </div>
           </div>
