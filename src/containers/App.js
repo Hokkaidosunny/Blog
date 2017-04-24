@@ -12,7 +12,7 @@ class App extends Component {
 
   render() {
     return (
-      <div id='app'>
+      <div className='app'>
         <Nav location={this.props.location} />
         <Notification />
         <div className='columns is-gapless'>

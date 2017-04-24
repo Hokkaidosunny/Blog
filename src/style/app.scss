@@ -1,6 +1,6 @@
 @import "~normalize.css";
 @import "~github-markdown-css";
-
+@import "./_var.scss";
 * {
   margin: 0;
   padding: 0;
@@ -21,31 +21,26 @@ html {
 	margin: 0 auto;
 }
 
-.article {
-  padding: 0 5rem;
+.app {
+  margin-top: $nav_height;
 }
 
-#app {
-  margin: 4rem 0 7rem 0;
-}
-
-@each $le in 1, 1.5, 2, 2.5, 3 {
-  .margin-#{$le} {
-    margin: #{$le}rem;
-  }
-
-  .margin-top-#{$le} {
-    margin-top: #{$le}rem;
-  }
-
-  .padding-#{$le} {
-    padding: #{$le}rem;
-  }
-
-  .padding-bottom-#{$le} {
-    padding-bottom: #{$le}rem;
-  }
-}
+// @each $le in 1, 1.5, 2, 2.5, 3 {
+//   .margin-#{$le} {
+//     margin: #{$le}rem;
+//   }
+//
+//   .margin-top-#{$le} {
+//     margin-top: #{$le}rem;
+//   }
+//
+//   .padding-#{$le} {
+//     padding: #{$le}rem;
+//   }
+//
+//   .padding-bottom-#{$le} {
+//     padding-bottom: #{$le}rem;
+//   }
+// }
 
 @import "bulma";
-@import "./phone.scss";

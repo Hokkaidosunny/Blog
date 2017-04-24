@@ -21,7 +21,7 @@ class HomePage extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps() {
   return {
   };
 }

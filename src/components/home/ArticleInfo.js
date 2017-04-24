@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {goArticlePage} from '../../actions/navigations.js';
 
@@ -18,7 +18,7 @@ class ArticleInfo extends Component {
 
   render() {
     return (
-      <div className='section padding-1.5' onClick={() => { this.props.goArticlePage(); }}>
+      <div className='' onClick={() => { this.props.goArticlePage(); }}>
         <article className="media">
           <div className="media-content">
             <div className="content">
@@ -37,7 +37,7 @@ class ArticleInfo extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps() {
   return {
   };
 }

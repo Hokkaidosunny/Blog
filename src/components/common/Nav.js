@@ -27,15 +27,15 @@ class Nav extends Component {
 
   render() {
     return (
-      <nav className="nav has-shadow" style={styles.nav}>
+      <nav className="nav has-shadow nav-bar">
         <div className="container">
           <div className="nav-left">
             <a className="nav-item">
               <img src={headimg} />
             </a>
-            <a className="nav-item">
+            {/* <a className="nav-item">
               <h4 className='title is-4'>ShenShuaijia</h4>
-            </a>
+            </a> */}
           </div>
 
           <span className="nav-toggle">
@@ -77,12 +77,3 @@ export default connect(mapStateToProps, {
   goHomePage,
   goEditPage
 })(Nav);
-
-const styles = {
-  nav: {
-    position: 'fixed',
-    top: '0',
-    width: '100%',
-    zIndex: '0'
-  }
-};
