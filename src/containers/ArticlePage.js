@@ -4,14 +4,10 @@ import {connect} from 'react-redux';
 import {showNotification} from '../actions/notification.js';
 import '../style/articlePage.scss';
 
-const articles = {
-  0: require('../db/source-map.md')
-};
-
 class ArticlePage extends Component {
 
   componentDidMount() {
-    const _html = marked(articles[0]);
+    const _html = marked(require(`../db/${this.props.articleId}.md`));
     this._article.innerHTML = _html;
   }
 
@@ -19,7 +15,7 @@ class ArticlePage extends Component {
     return (
       <div>
         <div className="content">
-          <h4 className='title is-4 has-text-centered'>source-map</h4>
+          {/* <h4 className='title is-4 has-text-centered'>source-map</h4> */}
           <article className="markdown-body" ref={_article => {
             this._article = _article;
           }}>
@@ -30,8 +26,9 @@ class ArticlePage extends Component {
   }
 }
 
-function mapStateToProps() {
+function mapStateToProps(state, ownProps) {
   return {
+    articleId: ownProps.params.id
   };
 }
 

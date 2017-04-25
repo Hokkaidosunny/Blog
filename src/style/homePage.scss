@@ -1,0 +1,7 @@
+@import "./_mixin.scss";
+@import "./_var.scss";
+
+.art-info {
+  @include show-hands;
+  margin-bottom: $margin_width;
+}
