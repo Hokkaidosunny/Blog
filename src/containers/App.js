@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Footer from '../components/common/Footer.js';
 import Nav from '../components/common/Nav.js';
 import Notification from '../components/common/Notification.js';
@@ -15,12 +16,8 @@ class App extends Component {
       <div className='app'>
         <Nav location={this.props.location} />
         <Notification />
-        <div className='columns is-gapless'>
-          <div className='column is-2' />
-          <div className='column is-8'>
-            {this.props.page}
-          </div>
-          <div className='column is-2' />
+        <div className='main'>
+          {this.props.page}
         </div>
         <Footer />
       </div>

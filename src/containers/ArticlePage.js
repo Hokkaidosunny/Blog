@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import marked from 'marked';
 import {connect} from 'react-redux';
 import {showNotification} from '../actions/notification.js';
+import '../style/articlePage.scss';
 
 const articles = {
   0: require('../db/source-map.md')
@@ -16,9 +17,9 @@ class ArticlePage extends Component {
 
   render() {
     return (
-      <div className='ArticlePage section'>
-        <div className="content article">
-          <h4 className='title is-4' style={styles.title}>source-map</h4>
+      <div>
+        <div className="content">
+          <h4 className='title is-4 has-text-centered'>source-map</h4>
           <article className="markdown-body" ref={_article => {
             this._article = _article;
           }}>
@@ -29,7 +30,7 @@ class ArticlePage extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps() {
   return {
   };
 }
@@ -37,9 +38,3 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
   showNotification
 })(ArticlePage);
-
-const styles = {
-  title: {
-    textAlign: 'center'
-  }
-};

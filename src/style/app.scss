@@ -1,6 +1,7 @@
 @import "~normalize.css";
 @import "~github-markdown-css";
 @import "./_var.scss";
+
 * {
   margin: 0;
   padding: 0;
@@ -22,7 +23,30 @@ html {
 }
 
 .app {
-  margin-top: $nav_height;
+  padding-top: $nav_height;
+}
+
+.nav-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.main {
+  padding: $paddin_width 0;
+  width: 80%;
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+.footer-info {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: $footer_height;
+  line-height: $footer_height;
+  width: 100%;
+  background-color: $footer_color;
 }
 
 // @each $le in 1, 1.5, 2, 2.5, 3 {

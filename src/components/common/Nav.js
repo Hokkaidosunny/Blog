@@ -27,42 +27,34 @@ class Nav extends Component {
 
   render() {
     return (
-      <nav className="nav has-shadow nav-bar">
-        <div className="container">
-          <div className="nav-left">
-            <a className="nav-item">
-              <img src={headimg} />
-            </a>
-            {/* <a className="nav-item">
-              <h4 className='title is-4'>ShenShuaijia</h4>
-            </a> */}
-          </div>
+      <div className='nav-bar'>
+        <nav className="nav has-shadow">
+          <div className="container">
+            <div className="nav-left">
+              <a className="nav-item">
+                <img src={headimg} />
+              </a>
+              <a className="nav-item">
+                <span>ShenShuaijia</span>
+              </a>
+            </div>
 
-          <span className="nav-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
+            <span className="nav-toggle">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
 
-          <div className="nav-right nav-menu">
-            <a className={cn('nav-item', 'is-tab', {'is-active': this.props.pathname == ('/' || '/home')})}
-              onClick={this.props.goHomePage}
-              >
-              首页
-            </a>
-            {/* <a className={cn('nav-item', 'is-tab', {'is-active': this.props.pathname == '/edit'})}
-              onClick={this.props.goEditPage}
-              >
-              编辑
-            </a>
-            <a className={cn('nav-item', 'is-tab', {'is-active': this.props.pathname == '/me'})}
-              onClick={this.props.goHomePage}
-              >
-              关于我
-            </a> */}
+            <div className="nav-right nav-menu">
+              <a className={cn('nav-item', 'is-tab', {'is-active': this.props.pathname == ('/' || '/home')})}
+                onClick={this.props.goHomePage}
+                >
+                首页
+              </a>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
     );
   }
 }
