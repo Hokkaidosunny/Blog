@@ -1,47 +1,86 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 const isDev = process.env.NODE_ENV === 'dev';
-const isPro = !isDev;
 
-function getPlugins() {
-  const plugins = [];
+//entry
+function getEntry() {
+  return {
+    vendor: [
+      'react',
+      'react-dom',
+      'react-redux',
+      'react-router',
+      'react-router-redux',
+      'redux',
+      'redux-thunk'
+    ],
+    index: './src/index.js'
+  };
+}
+
+//plugins
+const plugins = [];
+//html-plugin
+plugins.push(
+  new HtmlWebpackPlugin({
+    title: 'index',
+    filename: 'index.html',
+    template: 'src/index.html',
+    inject: true
+  })
+);
+
+//DefinePlugin
+plugins.push(
+  new webpack.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+  })
+);
+
+//common chunk
+plugins.push(
+  new webpack.optimize.CommonsChunkPlugin({
+    name: ['vendor', 'manifest'],
+    minChunks: Infinity
+  })
+);
+
+plugins.push(
+  new ChunkManifestPlugin({
+    filename: 'manifest.json',
+    manifestVariable: 'webpackManifest',
+    inlineManifest: true
+  })
+);
+
+//开发环境插件
+function getDevPlugins() {
+  return plugins;
+}
+
+//生产环境插件
+function getProPlugins() {
   plugins.push(
-    new HtmlWebpackPlugin({
-      title: 'index',
-      filename: 'index.html',
-      template: 'src/index.html',
-      inject: true
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      compress: {
+        warnings: false,  //no warnings
+        drop_console: true  //no console
+      }
     })
   );
-
-  plugins.push(
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    })
-  );
-
-  if (isPro) {
-    plugins.push(
-      new webpack.optimize.UglifyJsPlugin({
-        sourceMap: true,
-        compress: {
-          warnings: false,  //no warnings
-          drop_console: true  //no console
-        }
-      })
-    );
-  }
   return plugins;
 }
 
 
 module.exports = {
-  entry: './src/index.js',
+  entry: getEntry(),
   output: {
     path: path.join(__dirname, '/dist/'),
-    filename: '[name].[hash].js',
-    chunkFilename: '[name].[hash].js',
+    filename: isDev ? '[name].[hash].js' : '[name].[chunkhash].js',
+    chunkFilename: isDev ? '[name].[hash].js' : '[name].[chunkhash].js',
     sourceMapFilename: '[file].map'
   },
   module: {
@@ -76,6 +115,6 @@ module.exports = {
       }
     ]
   },
-  devtool: isDev ? 'cheap-module-source-map' : 'source-map',
-  plugins: getPlugins()
+  devtool: isDev ? 'cheap-module-eval-source-map' : 'source-map',
+  plugins: isDev ? getDevPlugins() : getProPlugins()
 };
