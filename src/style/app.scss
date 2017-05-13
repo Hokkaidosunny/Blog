@@ -1,14 +1,6 @@
 @import "~normalize.css";
 @import "~github-markdown-css";
-@import "./_var.scss";
-
-* {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  box-sizing: border-box;
-  background: transparent;
-}
+@import "./common/index.scss";
 
 html {
   position: relative;
@@ -23,8 +15,8 @@ html {
 }
 
 .app {
-  padding-top: $nav_height;
-  padding-bottom: $footer_height;
+  padding-top: $nav-height;
+  padding-bottom: $footer-height;
 }
 
 .nav-bar {
@@ -34,7 +26,7 @@ html {
 }
 
 .main {
-  padding: $paddin_width 0;
+  padding: $paddin-width 0;
   width: 80%;
   margin: 0 auto;
   max-width: 960px;
@@ -44,10 +36,32 @@ html {
   position: absolute;
   left: 0;
   bottom: 0;
-  height: $footer_height;
-  line-height: $footer_height;
+  height: $footer-height;
+  line-height: $footer-height;
   width: 100%;
-  background-color: $footer_color;
+  background-color: $footer-color;
+  p {
+    line-height: $footer-height;
+  }
+}
+
+.back-to-top {
+  position: fixed;
+  right: 3 * $paddin-width;
+  bottom: $footer-height + $paddin-width;
+  z-index: 999;
+  button {
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    padding-top: 10px;
+    border: 1px solid $light-gray;
+    color: $gray;
+    background: $white;
+    &:hover {
+      background: $light-gray;
+    }
+  }
 }
 
 // @each $le in 1, 1.5, 2, 2.5, 3 {

@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const isDev = process.env.NODE_ENV === 'dev';
 
 //entry
@@ -21,39 +22,30 @@ function getEntry() {
 }
 
 //plugins
-const plugins = [];
-//html-plugin
-plugins.push(
+const plugins = [
+  new LodashModuleReplacementPlugin(),
+  //html-plugin
   new HtmlWebpackPlugin({
     title: 'index',
     filename: 'index.html',
     template: 'src/index.html',
     inject: true
-  })
-);
-
-//DefinePlugin
-plugins.push(
+  }),
+  //DefinePlugin
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-  })
-);
-
-//common chunk
-plugins.push(
+  }),
+  //common chunk
   new webpack.optimize.CommonsChunkPlugin({
     name: ['vendor', 'manifest'],
     minChunks: Infinity
-  })
-);
-
-plugins.push(
+  }),
   new ChunkManifestPlugin({
     filename: 'manifest.json',
     manifestVariable: 'webpackManifest',
     inlineManifest: true
   })
-);
+];
 
 //开发环境插件
 function getDevPlugins() {
