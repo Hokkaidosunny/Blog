@@ -7,7 +7,7 @@ import '../style/homePage.scss';
 class HomePage extends Component {
 
   componentDidMount() {
-    //this.props.showNotification('', '123');
+    
   }
 
   render() {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Route} from 'react-router';
-import PropTypes from 'prop-types';
 import Footer from '../components/common/Footer.js';
 import Nav from '../components/common/Nav.js';
 import Notification from '../components/common/Notification.js';
@@ -11,11 +10,6 @@ import EditPage from './EditPage.js';
 import '../style/app.scss';
 
 class App extends Component {
-  static propTypes = {
-    page: PropTypes.element,
-    location: PropTypes.object
-  };
-
   render() {
     return (
       <div className='app'>

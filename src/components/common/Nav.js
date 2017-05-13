@@ -7,12 +7,6 @@ import headimg from '../../imgs/headimg.jpeg';
 class Nav extends Component {
   static displayName = 'Nav';
 
-  static propTypes = {
-  };
-
-  static defaultProps = {
-  };
-
   constructor(props) {
     super(props);
     this.state = {};
@@ -30,7 +24,7 @@ class Nav extends Component {
       <div className='nav-bar'>
         <nav className="nav has-shadow">
           <div className="container">
-            <div className="nav-left">
+            <div className="nav-left" onClick={this.props.goHomePage}>
               <a className="nav-item">
                 <img src={headimg} />
               </a>
@@ -46,7 +40,8 @@ class Nav extends Component {
             </span>
 
             <div className="nav-right nav-menu">
-              <a className={cn('nav-item', 'is-tab', {'is-active': this.props.pathname == ('/' || '/home')})}
+              <a
+                className={cn('nav-item', 'is-tab', {'is-active': this.props.pathname == ('/' || '/home')})}
                 onClick={this.props.goHomePage}
                 >
                 首页

@@ -5,6 +5,7 @@ import { applyMiddleware, compose, createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
+import {Route} from 'react-router';
 import createHistory from 'history/createHashHistory';
 import reducers from './reducers/index.js';
 import App from './containers/App.js';
@@ -30,7 +31,7 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <App />
+      <Route path='/' component={App} />
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root')

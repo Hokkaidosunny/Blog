@@ -35,12 +35,7 @@ class EditPage extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {};
-}
-
-export default connect(mapStateToProps, null)(EditPage);
-
+export default connect(null, null)(EditPage);
 
 const styles = {
   textarea: {

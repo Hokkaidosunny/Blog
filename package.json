@@ -10,7 +10,8 @@
   },
   "scripts": {
     "start": "NODE_ENV=dev webpack-dev-server --host 0.0.0.0 --port 3000 --inline --hot",
-    "build": "rm -rf dist && NODE_ENV=pro webpack --progress --colors"
+    "build": "rm -rf dist && rm -rf Blog && NODE_ENV=pro webpack --progress --colors",
+    "deploy": "mv dist Blog && scp -P 26234 -r Blog root@23.106.130.15:/data/release/"
   },
   "dependencies": {
     "bulma": "^0.4.1",
@@ -24,8 +25,6 @@
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",
     "react-router": "^4.1.1",
-    "react-router-config": "^1.0.0-beta.3",
-    "react-router-dom": "^4.1.1",
     "react-router-redux": "^5.0.0-alpha.6",
     "redux": "^3.0.6",
     "redux-thunk": "^2.1.0"
