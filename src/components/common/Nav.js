@@ -61,7 +61,7 @@ class Nav extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    pathname: ownProps.location.pathname
+    pathname: ownProps.location && ownProps.location.pathname
   };
 }
 

@@ -1,35 +1,37 @@
 require('fastclick').attach(document.body);
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 import { applyMiddleware, compose, createStore, combineReducers } from 'redux';
-import thunk from 'redux-thunk';  //use it for async action
-import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
-import { Router, hashHistory } from 'react-router';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
+import createHistory from 'history/createHashHistory';
 import reducers from './reducers/index.js';
-import routes from './routes.js';
+import App from './containers/App.js';
 
 //console.log(process.env.NODE_ENV);
+const history = createHistory();
 
-const reducer = combineReducers({
-  ...reducers,
-  routing: routerReducer
-});
 //use chrome extension
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = composeEnhancers(
-  applyMiddleware(thunk, routerMiddleware(hashHistory))
-)(createStore)(reducer);
+const enhancers = [
+  applyMiddleware(thunk, routerMiddleware(history))
+];
 
-const history = syncHistoryWithStore(hashHistory, store);
+const store = createStore(
+  combineReducers({
+    ...reducers,
+    routing: routerReducer
+  }),
+  composeEnhancers(...enhancers)
+);
 
 ReactDOM.render(
   <Provider store={store}>
-    <div>
-      <Router history={history}>
-        {routes}
-      </Router>
-    </div>
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
   </Provider>,
-  document.getElementById('root'));
+  document.getElementById('root')
+);

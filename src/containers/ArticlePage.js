@@ -28,7 +28,7 @@ class ArticlePage extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    articleId: ownProps.params.id
+    articleId: ownProps.match && ownProps.match.params.id
   };
 }
 

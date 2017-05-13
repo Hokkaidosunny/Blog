@@ -115,6 +115,6 @@ module.exports = {
       }
     ]
   },
-  devtool: isDev ? 'cheap-module-eval-source-map' : 'source-map',
+  devtool: isDev ? 'inline-source-map' : 'source-map',
   plugins: isDev ? getDevPlugins() : getProPlugins()
 };
