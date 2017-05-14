@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const isDev = process.env.NODE_ENV === 'dev';
 
 //entry
@@ -44,7 +45,8 @@ const plugins = [
     filename: 'manifest.json',
     manifestVariable: 'webpackManifest',
     inlineManifest: true
-  })
+  }),
+  new ExtractTextPlugin('style.[contenthash].css')
 ];
 
 //开发环境插件
@@ -82,18 +84,19 @@ module.exports = {
         loader: 'style-loader!css-loader'
       }, {
         test: /\.(scss|sass)$/,
-        use: [{
-          loader: "style-loader"
-        }, {
-          loader: "css-loader"
-        }, {
-          loader: "sass-loader",
-          options: {
-            includePaths: [
-              path.join(__dirname, "node_modules/bulma")
-            ]
-          }
-        }]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            { loader: "css-loader" }, {
+              loader: "sass-loader",
+              options: {
+                includePaths: [
+                  path.join(__dirname, "node_modules/bulma")
+                ]
+              }
+            }
+          ]
+        })
       }, {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
