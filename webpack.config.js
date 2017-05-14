@@ -4,6 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const cssnano = require('cssnano');
 const isDev = process.env.NODE_ENV === 'dev';
 
 //entry
@@ -56,7 +58,11 @@ function getDevPlugins() {
 
 //生产环境插件
 function getProPlugins() {
-  plugins.push(
+  const pro_plugins = plugins.concat([
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /\.css$/g,
+      cssProcessor: cssnano
+    }),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
       compress: {
@@ -64,8 +70,8 @@ function getProPlugins() {
         drop_console: true  //no console
       }
     })
-  );
-  return plugins;
+  ]);
+  return pro_plugins;
 }
 
 
