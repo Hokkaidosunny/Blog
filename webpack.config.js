@@ -46,7 +46,7 @@ const plugins = [
     manifestVariable: 'webpackManifest',
     inlineManifest: true
   }),
-  new ExtractTextPlugin('style.[contenthash].css')
+  new ExtractTextPlugin('[name].[contenthash].css')
 ];
 
 //开发环境插件

@@ -1,3 +1,6 @@
+@import "~normalize.css";
+@import "~github-markdown-css";
+@import "./common/_preset.scss";
 @import "./common/index.scss";
 
 html {
@@ -72,3 +75,4 @@ html {
 //     padding-bottom: #{$le}rem;
 //   }
 // }
+@import "bulma";
