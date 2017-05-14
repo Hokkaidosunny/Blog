@@ -13,7 +13,7 @@ class ArticlePage extends Component {
 
   render() {
     return (
-      <div>
+      <div className='article-page'>
         <div className="content">
           {/* <h4 className='title is-4 has-text-centered'>source-map</h4> */}
           <article className="markdown-body" ref={_article => {

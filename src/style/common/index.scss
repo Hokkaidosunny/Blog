@@ -1,3 +1,8 @@
+@import "~normalize.css";
+@import "~github-markdown-css";
+
 @import "./_var.scss";
 @import "./_preset.scss";
 @import "./_mixin.scss";
+
+@import "bulma";

@@ -1,5 +1,3 @@
-@import "~normalize.css";
-@import "~github-markdown-css";
 @import "./common/index.scss";
 
 html {
@@ -23,13 +21,6 @@ html {
   position: fixed;
   top: 0;
   width: 100%;
-}
-
-.main {
-  padding: $paddin-width 0;
-  width: 80%;
-  margin: 0 auto;
-  max-width: 960px;
 }
 
 .footer-info {
@@ -81,5 +72,3 @@ html {
 //     padding-bottom: #{$le}rem;
 //   }
 // }
-
-@import "bulma";

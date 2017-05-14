@@ -1,6 +1,48 @@
 @import "./common/index.scss";
 
-.art-info {
-  @include show-hands;
-  margin-bottom: $margin-width;
+$category-height: $nav-height / 2;
+
+@mixin middle {
+  width: $main-with;
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+.home-page {
+  .category {
+    width: 100%;
+    height: $category-height;
+    background: $turquoise;
+
+    .items {
+      @include middle;
+      height: 100%;
+      li {
+        @include show-hands;
+        float: left;
+        width: 50px;
+        height: 100%;
+        text-align: center;
+        font-size: $font-small;
+        line-height: $category-height;
+        color: $white;
+        &:hover {
+          background: rgba(0,0,0,0.2);
+        }
+      }
+      .active {
+        background: rgba(0,0,0,0.2);
+      }
+    }
+  }
+
+  .articles {
+    @include middle;
+    padding: $paddin-width 0;
+
+    .art-info {
+      @include show-hands;
+      margin-bottom: $margin-width;
+    }
+  }
 }
