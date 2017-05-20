@@ -1,0 +1,1 @@
+import './articlePage/index.js';

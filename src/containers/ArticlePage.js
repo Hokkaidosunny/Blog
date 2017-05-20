@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import marked from 'marked';
 import {connect} from 'react-redux';
 import {showNotification} from '../actions/notification.js';
+import fetchArticleInfoList from '../actions/article/fetchArticleInfoList.js';
 import '../style/articlePage.scss';
 
 class ArticlePage extends Component {
@@ -9,6 +10,9 @@ class ArticlePage extends Component {
   componentDidMount() {
     const _html = marked(require(`../db/${this.props.articleId}.md`));
     this._article.innerHTML = _html;
+    window.f = () => {
+      this.props.fetchArticleInfoList();
+    };
   }
 
   render() {
@@ -33,5 +37,6 @@ function mapStateToProps(state, ownProps) {
 }
 
 export default connect(mapStateToProps, {
-  showNotification
+  showNotification,
+  fetchArticleInfoList
 })(ArticlePage);
