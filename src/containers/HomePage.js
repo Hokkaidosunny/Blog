@@ -1,41 +1,50 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ArticleInfo from '../components/home/ArticleInfo.js';
 import {connect} from 'react-redux';
 import {showNotification} from '../actions/notification.js';
 import Category from '../components/home/Category.js';
+import fetchArticleInfoList from '../actions/home/fetchArticleInfoList.js';
 
 import '../style/homePage.scss';
 
 class HomePage extends Component {
+  static propTypes = {
+    articleInfoList: PropTypes.array,
+    fetchArticleInfoList: PropTypes.func
+  };
+
+  componentWillMount() {
+    this.props.fetchArticleInfoList();
+  }
 
   componentDidMount() {
 
   }
 
   render() {
-    const articleInfo_0 = {
-      articleId: 0
-    };
-    const articleInfo_1 = {
-      articleId: 1
-    };
     return (
       <div className='home-page'>
         <Category />
         <div className='articles'>
-          <ArticleInfo {...articleInfo_0} />
-          <ArticleInfo {...articleInfo_1} />
+          {
+            this.props.articleInfoList.map((item, index) => {
+              return <ArticleInfo key={index} articleInfo={item} />;
+            })
+          }
         </div>
       </div>
     );
   }
 }
 
-function mapStateToProps() {
+function mapStateToProps(state) {
   return {
+    articleInfoList: state.articleInfoList.articleInfoList
   };
 }
 
 export default connect(mapStateToProps, {
-  showNotification
+  showNotification,
+  fetchArticleInfoList
 })(HomePage);

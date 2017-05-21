@@ -20,7 +20,7 @@ $category-height: $nav-height / 2;
       li {
         @include show-hands;
         float: left;
-        width: 50px;
+        padding: 0 $paddin-width;
         height: 100%;
         text-align: center;
         font-size: $font-small;

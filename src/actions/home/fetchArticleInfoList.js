@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import fetchFlow from '../fetchFlow.js';
+import fetchFlow from '../util/fetchFlow.js';
 
 export const START_FETCH_ARTICLE_INFO_LIST = 'GET_ARTICLE_INFO_LIST';
 
@@ -16,7 +16,7 @@ const fetchArticleInfoListSuccess = createAction(FETCH_ARTICLE_INFO_LIST_SUCCESS
   return articleInfoList;
 });
 
-export default () => {
+export default (tags = []) => {
   return (dispatch, getState) => {
     const state = getState();
 
@@ -25,7 +25,10 @@ export default () => {
       options: {
         url: 'http://127.0.0.1:4000/articleInfoList',
         json: true,
-        method: 'GET'
+        method: 'POST',
+        params: {
+          tags
+        }
       },
       preState: state.articleInfoList,
       startFetchAction: createAction(START_FETCH_ARTICLE_INFO_LIST),

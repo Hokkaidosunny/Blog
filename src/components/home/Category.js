@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import fetchTags from '../../actions/home/fetchTags.js';
 
-export default class Category extends Component {
+class Category extends Component {
   static displayName = 'Category';
 
   static propTypes = {
@@ -15,6 +17,7 @@ export default class Category extends Component {
   }
 
   componentWillMount() {
+    this.props.fetchTags();
   }
 
   componentDidMount() {
@@ -24,11 +27,24 @@ export default class Category extends Component {
     return (
       <div className='category'>
         <ul className='items'>
-          <li className='active'>前端</li>
-          <li>前端</li>
-          <li>前端</li>
+          <li className='active'>All</li>
+          {
+            this.props.tags && this.props.tags.map((item, index) => {
+              return (<li key={index}>{item}</li>);
+            })
+          }
         </ul>
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    tags: state.tags.tags
+  };
+}
+
+export default connect(mapStateToProps, {
+  fetchTags
+})(Category);

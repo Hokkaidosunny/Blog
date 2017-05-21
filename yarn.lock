@@ -2134,9 +2134,9 @@ fbjs@^0.8.9:
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.9"
 
-fetch-mock@^5.10.1:
-  version "5.10.1"
-  resolved "http://registry.npm.taobao.org/fetch-mock/download/fetch-mock-5.10.1.tgz#765003cc3971d279218d27f4419159afdf22614a"
+fetch-mock@5.10.0:
+  version "5.10.0"
+  resolved "http://registry.npm.taobao.org/fetch-mock/download/fetch-mock-5.10.0.tgz#52e29c72800640e48410602fe076ac3615e590ad"
   dependencies:
     glob-to-regexp "^0.3.0"
     node-fetch "^1.3.3"

@@ -1,1 +1,2 @@
-import './articlePage/index.js';
+//import './articlePage';
+import './homePage';

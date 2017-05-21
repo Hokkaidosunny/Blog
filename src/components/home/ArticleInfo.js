@@ -7,30 +7,23 @@ class ArticleInfo extends Component {
   static displayName = 'ArticleInfo';
 
   static propTypes = {
-    articleId: PropTypes.number
+    articleInfo: PropTypes.object
   };
-
-  static defaultProps = {
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
 
   render() {
+    const {id, title, bref, date} = this.props.articleInfo;
     return (
       <div className='art-info' onClick={() => {
-        this.props.goArticlePage(this.props.articleId);
+        this.props.goArticlePage(id);
       }}>
         <article className="media">
           <div className="media-content">
             <div className="content">
               <p>
-                <strong className='is-medium'>Source-map  </strong>
-                <small>3月21日</small>
+                <strong className='is-medium'>{title}  </strong>
+                <small>{date}</small>
                 <br />
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+                {bref}
                 <br />
               </p>
             </div>
@@ -41,11 +34,6 @@ class ArticleInfo extends Component {
   }
 }
 
-function mapStateToProps() {
-  return {
-  };
-}
-
-export default connect(mapStateToProps, {
+export default connect(null, {
   goArticlePage
 })(ArticleInfo);

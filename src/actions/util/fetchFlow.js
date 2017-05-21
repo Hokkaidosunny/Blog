@@ -1,4 +1,4 @@
-import fetchApi from '../util/fetchApi.js';
+import fetchApi from '../../util/fetchApi.js';
 
 function fetchFlow({
   options,
