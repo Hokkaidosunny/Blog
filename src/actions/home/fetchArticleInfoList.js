@@ -16,7 +16,7 @@ const fetchArticleInfoListSuccess = createAction(FETCH_ARTICLE_INFO_LIST_SUCCESS
   return articleInfoList;
 });
 
-export default (tags = []) => {
+export default (tags = '') => {
   return (dispatch, getState) => {
     const state = getState();
 

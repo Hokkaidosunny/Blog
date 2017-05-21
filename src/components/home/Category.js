@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import fetchTags from '../../actions/home/fetchTags.js';
+import fetchArticleInfoList from '../../actions/home/fetchArticleInfoList.js';
 
 class Category extends Component {
   static displayName = 'Category';
@@ -13,7 +14,9 @@ class Category extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      activeIndex: 0
+    };
   }
 
   componentWillMount() {
@@ -23,14 +26,28 @@ class Category extends Component {
   componentDidMount() {
   }
 
+  changeActive = (activeIndex) => {
+    this.setState({activeIndex});
+    this.props.fetchArticleInfoList(
+      this.props.tags[activeIndex]
+    );
+  }
+
   render() {
     return (
       <div className='category'>
         <ul className='items'>
-          <li className='active'>All</li>
           {
             this.props.tags && this.props.tags.map((item, index) => {
-              return (<li key={index}>{item}</li>);
+              return (
+                <li
+                  key={index}
+                  className={this.state.activeIndex === index ? 'active' : ''}
+                  onClick={() => this.changeActive(index)}
+                  >
+                  {item}
+                </li>
+              );
             })
           }
         </ul>
@@ -46,5 +63,6 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-  fetchTags
+  fetchTags,
+  fetchArticleInfoList
 })(Category);

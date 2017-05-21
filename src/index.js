@@ -14,9 +14,6 @@ import reducers from './reducers/index.js';
 import App from './containers/App.js';
 global.isDev = process.env.NODE_ENV == 'dev';
 console.log(isDev);
-if (isDev) {
-  require('./Mock/index.js');
-}
 
 const history = createHistory();
 

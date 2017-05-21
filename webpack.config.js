@@ -7,10 +7,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const cssnano = require('cssnano');
 const isDev = process.env.NODE_ENV === 'dev';
+const isMock = process.env.MOCK === 'true';
 
 //entry
 function getEntry() {
-  return {
+  const entry = {
     vendor: [
       'react',
       'react-dom',
@@ -22,6 +23,11 @@ function getEntry() {
     ],
     index: './src/index.js'
   };
+  if (isMock) {
+    entry.index = ['./src/mock/index.js', './src/index.js'];
+  }
+
+  return entry;
 }
 
 //plugins
