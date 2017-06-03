@@ -9,7 +9,7 @@
     "url": "git+https://github.com/Hokkaidosunny/Blog.git"
   },
   "scripts": {
-    "start": "NODE_ENV=dev webpack-dev-server --host 0.0.0.0 --port 3000 --inline --hot",
+    "start": "MOCK=true NODE_ENV=dev webpack-dev-server --host 0.0.0.0 --port 3000 --inline --hot",
     "build": "rm -rf dist && rm -rf Blog && NODE_ENV=pro webpack --progress --colors",
     "deploy": "mv dist Blog && scp -P 26234 -r Blog root@23.106.130.15:/data/release/"
   },
@@ -30,7 +30,9 @@
     "react-router-redux": "^5.0.0-alpha.6",
     "redux": "^3.0.6",
     "redux-actions": "^2.0.3",
+    "redux-saga": "^0.15.3",
     "redux-thunk": "^2.1.0",
+    "reselect": "^3.0.1",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
