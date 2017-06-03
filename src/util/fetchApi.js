@@ -2,7 +2,7 @@ import qs from 'querystring';
 
 function fetchApi({
   url,
-  method = 'POST',
+  method = 'GET',
   params,
   json = false,
   customHeaders = {}

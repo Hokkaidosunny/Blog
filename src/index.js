@@ -11,23 +11,34 @@ import {Route} from 'react-router';
 import createHistory from 'history/createHashHistory';
 import {createLogger} from 'redux-logger';
 import reducers from './reducers/index.js';
+import createSagaMiddleware from 'redux-saga';
+import sagas from './sagas/index.js';
 import App from './containers/App.js';
 global.isDev = process.env.NODE_ENV == 'dev';
-console.log(isDev);
 
 const history = createHistory();
-
+const sagaMiddleware = createSagaMiddleware();
 //use chrome extension
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 let enhancers;
-if (isDev) {
-  enhancers = [applyMiddleware(thunk, createLogger({
-    duration: true,
-    diff: true
-  }), routerMiddleware(history))];
+if (global.isDev) {
+  enhancers = [
+    applyMiddleware(
+      thunk,
+      sagaMiddleware,
+      createLogger({ duration: true, diff: true}),
+      routerMiddleware(history)
+    )
+  ];
 } else {
-  enhancers = [applyMiddleware(thunk, routerMiddleware(history))];
+  enhancers = [
+    applyMiddleware(
+      thunk,
+      createSagaMiddleware(),
+      routerMiddleware(history)
+    )
+  ];
 }
 
 const store = createStore(
@@ -37,6 +48,11 @@ const store = createStore(
   }),
   composeEnhancers(...enhancers)
 );
+
+//run sagas
+for (const key in sagas) {
+  sagaMiddleware.run(sagas[key]);
+}
 
 ReactDOM.render(
   <Provider store={store}>

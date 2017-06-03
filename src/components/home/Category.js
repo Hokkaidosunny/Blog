@@ -58,7 +58,7 @@ class Category extends Component {
 
 function mapStateToProps(state) {
   return {
-    tags: state.tags.tags
+    tags: state.tags.data
   };
 }
 

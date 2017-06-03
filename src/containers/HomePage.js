@@ -40,7 +40,7 @@ class HomePage extends Component {
 
 function mapStateToProps(state) {
   return {
-    articleInfoList: state.articleInfoList.articleInfoList
+    articleInfoList: state.articleInfoList.data
   };
 }
 
