@@ -3,7 +3,7 @@ import {Route} from 'react-router';
 import Nav from '../components/common/Nav.js';
 import Footer from '../components/common/Footer.js';
 import BackToTop from '../components/common/BackToTop.js';
-import Notification from '../components/common/Notification.js';
+import Notifications from '../components/common/Notifications.js';
 import HomePage from './HomePage.js';
 import ArticlePage from './ArticlePage.js';
 import EditPage from './EditPage.js';
@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <div className='app'>
         <Nav location={this.props.location} />
-        <Notification />
+        <Notifications />
         <BackToTop />
         <div className='main'>
           <Route exact path="/" component={HomePage} />

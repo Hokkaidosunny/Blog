@@ -1,0 +1,18 @@
+@import "../common/index.scss";
+
+.notifications-container {
+  position: fixed;
+  top: 30%;
+  width: 100%;
+  z-index: 999;
+  .item {
+    height: 50px;
+    width: 20rem;
+    margin: 0 auto;
+    background-color: $primary;
+    overflow: hidden;
+    border-radius: 5px;
+    margin-bottom: $margin-width;
+    @include box-shadow;
+  }
+}

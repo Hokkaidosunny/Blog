@@ -69,6 +69,5 @@ function* fetchFlow(action) {
 }
 
 export default function* () {
-  console.log('fetchFlow saga');
   yield takeEvery('FETCH_FLOW', fetchFlow);
 }

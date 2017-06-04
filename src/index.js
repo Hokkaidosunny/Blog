@@ -27,7 +27,7 @@ if (global.isDev) {
     applyMiddleware(
       thunk,
       sagaMiddleware,
-      createLogger({ duration: true, diff: true}),
+      //createLogger({ duration: true, diff: true}),
       routerMiddleware(history)
     )
   ];

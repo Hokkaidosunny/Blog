@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ArticleInfo from '../components/home/ArticleInfo.js';
 import {connect} from 'react-redux';
-import {showNotification} from '../actions/notification.js';
+import {addNotification, removeNotification} from '../actions/notification.js';
 import Category from '../components/home/Category.js';
 import fetchArticleInfoList from '../actions/home/fetchArticleInfoList.js';
 
@@ -16,6 +16,12 @@ class HomePage extends Component {
 
   componentWillMount() {
     this.props.fetchArticleInfoList();
+    window.add = (msg) => {
+      this.props.addNotification(msg);
+    };
+    window.remove = () => {
+      this.props.removeNotification('1');
+    };
   }
 
   componentDidMount() {
@@ -45,6 +51,7 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-  showNotification,
+  addNotification,
+  removeNotification,
   fetchArticleInfoList
 })(HomePage);

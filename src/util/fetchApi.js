@@ -30,10 +30,6 @@ function fetchApi({
 
   return fetch(url, fetch_options).then((response) => {
     return response.json();
-  }).then((data) => {
-    return Promise.resolve(data);
-  }).catch((err) => {
-    return Promise.reject(err);
   });
 }
 
