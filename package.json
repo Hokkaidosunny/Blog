@@ -7,7 +7,8 @@
   },
   "scripts": {
     "start": "hexo server",
-    "build": "rm -rf public && hexo generate"
+    "build": "rm -rf public && hexo generate",
+    "depoly": "rsync -e 'ssh -p 26234' -a public/ root@23.106.130.15:/data/release/Blog/"
   },
   "dependencies": {
     "hexo": "^3.2.0",
