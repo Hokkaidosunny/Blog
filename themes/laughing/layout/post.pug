@@ -8,6 +8,8 @@ block content
           a.article-gallery-img.fancybox(href=photo)
             img(src=photo)
     | !{page.content}
+    if theme.gitment.enable
+      #gitments(style='max-width:'+ theme.content_width +'px;margin:0 auto;')
   .article-meta(style='max-width:'+ theme.content_width +'px')
     if page.tags && page.tags.length
       .tags
@@ -17,8 +19,6 @@ block content
       .categories
         i.icon.icon-category
         | !{list_categories(page.categories)}
-  if theme.gitment.enable
-    #gitments(style='max-width:'+ theme.content_width +'px;margin:0 auto;')
   if theme.duoshuo.enable
     .article-comment(style='max-width:'+ theme.content_width +'px')
       #ds-thread.ds-thread(data-thread-key=page._id, data-title=page.title, data-url=config.url + url_for(page.path), site-name=theme.duoshuo.siteName)
