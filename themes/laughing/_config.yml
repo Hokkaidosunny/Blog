@@ -1,0 +1,40 @@
+# Icon
+favicon: /favicon.ico
+# SEO
+keywords: Hexo, Nodejs, Reactjs, Vuejs
+# Header
+page_background: /default_images/page_background.jpg
+page_menu_button: dark
+post_background: /default_images/post_background.jpg
+post_menu_button: light
+title_plancehold: 随笔
+author:
+  head: /favicon.ico
+  signature: 志存高远 脚踏实地
+navication:
+  - name: Github
+    link: https://github.com/Hokkaidosunny
+  - name: SegmentFault
+    link: https://segmentfault.com/u/hokkaidosunny
+# content
+content_width: 800
+# Footer
+## Social icon list: [facebook, twitter, weibo, wechat, github, stackoverflow, linkin, email, segmentfault, flickr, zhihu, disqus, douban, bilibili]
+social:
+  - name: Github
+    icon: github
+    link: https://github.com/Hokkaidosunny
+  - name: SegmentFault
+    icon: segmentfault
+    link: https://segmentfault.com/u/hokkaidosunny
+# Duoshuo
+duoshuo:
+  enable: false
+  siteName: ueibo
+gitment:
+  enable: true
+# Copyright
+copyright:
+  record: false
+  hexo: false
+  laughing: false
