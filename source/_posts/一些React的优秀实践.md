@@ -1,7 +1,7 @@
 ---
 title: 一些React的优秀实践
 date: 2017-07-16 01:06:13
-tags:
+tags: react
 ---
 
 ### connect写法

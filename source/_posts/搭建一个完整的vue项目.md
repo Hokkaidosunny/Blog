@@ -1,7 +1,7 @@
 ---
 title: 搭建一个完整的vue项目
 date: 2017-07-16 01:01:11
-tags:
+tags: vue
 ---
 ###项目连接
 [github链接](https://github.com/Hokkaidosunny/generator-vue-bucket.git)

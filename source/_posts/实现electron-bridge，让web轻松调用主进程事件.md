@@ -1,7 +1,7 @@
 ---
 title: 实现electron-bridge，让web轻松调用主进程事件
 date: 2017-07-16 20:29:01
-tags:
+tags: electron
 ---
 
 ##项目连接
