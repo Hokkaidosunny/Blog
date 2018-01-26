@@ -1,11 +1,11 @@
 ---
-title: 实现electron-bridge，让web轻松调用主进程事件
+title: 实现electron-tunnel
 date: 2017-07-16 20:29:01
 tags: electron
 ---
 
 ##项目连接
-[github链接(electron-bridge)](https://github.com/Hokkaidosunny/electron-bridge)
+[github链接(electron-tunnel)](https://github.com/Hokkaidosunny/electron-tunnel)
 
 # Motivition
 
