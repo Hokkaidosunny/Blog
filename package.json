@@ -8,7 +8,7 @@
   "scripts": {
     "start": "hexo server",
     "build": "rm -rf public && hexo generate",
-    "depoly": "rsync -a public/ ssj@45.32.17.56:/home/ssj/release/blog/"
+    "depoly": "rsync -a public/ ssj@118.25.6.240:/home/ssj/release/blog/"
   },
   "dependencies": {
     "hexo": "^3.5.0",
