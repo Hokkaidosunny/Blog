@@ -467,7 +467,7 @@
     d.addEventListener('scroll', function () {
         var top = docEl.scrollTop;
         Blog.toggleGotop(top);
-        Blog.fixedHeader(top);
+        Blog.fixedHeader(document.documentElement.scrollTop);
         Blog.toc.fixed(top);
         Blog.toc.actived(top);
     }, false);
