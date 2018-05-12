@@ -1,5 +1,5 @@
 <footer class="footer">
-    <!-- <div class="top">
+    <div class="top">
         <%- partial('plugins/site-visit') %>
         <p>
             <% if ((config.feed) && (config.feed.path.length)) { %>
@@ -7,7 +7,7 @@
             <% } %>
             <span><%- __('footer.license') %></span>
         </p>
-    </div> -->
+    </div>
     <div class="bottom">
         <p><span><%-config.author %> &copy; <%if (theme.since_year && theme.since_year < date(new Date(), 'YYYY')) {%><%- theme.since_year %> - <%}%><%- date(new Date(), 'YYYY') %></span>
             <span>

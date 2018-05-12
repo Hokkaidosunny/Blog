@@ -21,6 +21,7 @@
     background: #fff;
     box-shadow: @boxShadow;
     .transition(.4s, cubic-bezier(.18, .81, .3, .89));
+    will-change: transform, -webkit-transform;
 
     &.hide {
         .transform(translateX(-100%));
@@ -43,7 +44,7 @@
 
     .brand {
         padding: 40px @menuPadding 2em;
-        background: fade(#000, 30%);
+        background: fade(@primaryColor, 50%);
     }
 
     .avatar {
@@ -256,3 +257,4 @@ a[title="站长统计"] {
         display: none;
     }
 }
+

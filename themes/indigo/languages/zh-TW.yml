@@ -2,7 +2,7 @@ global:
   search_input_hint: "搜尋"
 
 post:
-  continue_reading: "閱讀全文"
+  continue_reading: "閱讀全文…"
   last_updated: "最後更新時間："
 
 footer:
