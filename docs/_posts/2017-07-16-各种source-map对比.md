@@ -1,12 +1,13 @@
 ---
+layout: post
 title: 各种source-map对比
-date: 2017-07-16 00:53:08
-tags: webpack
+date: 2017-07-16 16:06:26 +0800
+categories: webpack
 ---
 
 ### eval
 
-每个 module 会通过 eval() 来执行，并在后面添加 `//# sourceURL`
+每个 module 会通过 eval() 来执行，并在后面添加  `//# sourceURL`
 
 ##### 形式：
 
@@ -37,11 +38,9 @@ webpackJsonp([1],[
 
 `eval`有最好的性能，但是它只映射到每个模块源码文件，没有行列信息。
 
-
-
 ### source-map
 
-打包代码同时创建一个新的 sourcemap 文件， 并在打包文件的末尾添加 `//# sourceURL `注释行告诉 JS 引擎文件在哪儿
+打包代码同时创建一个新的 sourcemap 文件， 并在打包文件的末尾添加  `//# sourceURL`注释行告诉 JS 引擎文件在哪儿
 
 ##### 形式：
 
@@ -58,9 +57,7 @@ webpackJsonp([1],[
 
 ##### 特点：
 
-source-map 不能为模块和需要重新生成的代码块缓存SourceMaps，它适用于生产环境。
-
-
+source-map  不能为模块和需要重新生成的代码块缓存 SourceMaps，它适用于生产环境。
 
 ### inline-source-map
 
@@ -83,11 +80,9 @@ webpackJsonp([1],[
 
 可以看到末尾的注释 sourceMap 作为 DataURL 的形式被内嵌进了 bundle 中，由于 sourceMap 的所有信息都被加到了 bundle 中，整个 bundle 文件变得硕大无比。
 
-
-
 ### eval-source-map
 
-这个就是把 `eval` 的 sourceURL 换成了完整 souremap 信息的 DataUrl
+这个就是把  `eval`  的 sourceURL 换成了完整 souremap 信息的 DataUrl
 
 ##### 形式：
 
@@ -104,7 +99,7 @@ webpackJsonp([1],[
       ...
       //# sourceMappingURL=data:application/json;charset=utf-8;base64,...
     )
-  },  
+  },
   function(module,exports,__webpack_require__){
     eval(
       ...
@@ -117,9 +112,7 @@ webpackJsonp([1],[
 
 ##### 特点：
 
-结合了eval和source-map的特点，eval将每个模块包起来，并且最后添加source-map的base64信息，可以知道行列，可以为模块缓存它可以更快的重建SourceMaps。
-
-
+结合了 eval 和 source-map 的特点，eval 将每个模块包起来，并且最后添加 source-map 的 base64 信息，可以知道行列，可以为模块缓存它可以更快的重建 SourceMaps。
 
 ### cheap-source-map
 
@@ -127,9 +120,7 @@ webpackJsonp([1],[
 
 ##### 特点：
 
-不包含行信息，会减小map大小，不支持loader的sourcemap，比如从jsx映射到js，最终你只能访问到js文件，看不了源码的jsx文件。
-
-
+不包含行信息，会减小 map 大小，不支持 loader 的 sourcemap，比如从 jsx 映射到 js，最终你只能访问到 js 文件，看不了源码的 jsx 文件。
 
 ### cheap-module-source-map
 
@@ -137,9 +128,7 @@ webpackJsonp([1],[
 
 ##### 特点：
 
-相较于cheap-source-map，可以支持loader的sourcemap
-
-
+相较于 cheap-source-map，可以支持 loader 的 sourcemap
 
 ### hidden-source-map
 
@@ -159,37 +148,31 @@ webpackJsonp([1],[
 
 ##### 特点：
 
-与 source-map 相比少了末尾的注释，但 output 目录下的 `index.js.map` 没有少
+与 source-map 相比少了末尾的注释，但 output 目录下的  `index.js.map`  没有少
 
-
-
-> 注1：webpack 不仅支持这 7 种，而且它们还是可以任意组合上面的 eval、inline、hidden 关键字，就如文档所说，你可以设置 souremap 选项为 cheap-module-inline-source-map。
+> 注 1：webpack 不仅支持这 7 种，而且它们还是可以任意组合上面的 eval、inline、hidden 关键字，就如文档所说，你可以设置 souremap 选项为 cheap-module-inline-source-map。
 >
-> 注2：如果你的 modules 里面已经包含了 SourceMaps ，你需要用 [source-map-loader](https://github.com/webpack/source-map-loader)来和合并生成一个新的 SourceMaps 
-
-
+> 注 2：如果你的 modules 里面已经包含了 SourceMaps ，你需要用  [source-map-loader](https://github.com/webpack/source-map-loader)来和合并生成一个新的 SourceMaps
 
 ## 调试
 
-github上关于调试的问题：[Source Maps don't work on Chrome](https://github.com/webpack/webpack/issues/2145)
+github 上关于调试的问题：[Source Maps don't work on Chrome](https://github.com/webpack/webpack/issues/2145)
 
 ##### 个人实测：
 
-chrome里能否调试源码  x：不行  o：可以
+chrome 里能否调试源码 x：不行 o：可以
 
-eval-source-map  x(刷新断点被忽略)
+eval-source-map x(刷新断点被忽略)
 
-cheap-source-map  x(不是源码)
+cheap-source-map x(不是源码)
 
 cheap-module-eval-source-map x(刷新断点被忽略)
 
-cheap-module-source-map  x(断点位置不对)
+cheap-module-source-map x(断点位置不对)
 
-source-map  o
+source-map o
 
 inline-source-map o
-
-
 
 ### 总结
 
@@ -197,8 +180,8 @@ eval： 更快
 
 inline：内联
 
-cheap：不含列信息，不支持loader sourcemap（譬如 babel 的 sourcemap，从jsx到js的映射）
+cheap：不含列信息，不支持 loader sourcemap（譬如 babel 的 sourcemap，从 jsx 到 js 的映射）
 
-cheap-module：不含列信息，支持loader sourcemap
+cheap-module：不含列信息，支持 loader sourcemap
 
-source-map：包含行列信息，支持loader sourcemap
+source-map：包含行列信息，支持 loader sourcemap
