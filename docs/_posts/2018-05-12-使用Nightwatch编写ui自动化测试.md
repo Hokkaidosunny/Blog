@@ -2,7 +2,7 @@
 layout: post
 title: 使用Nightwatch编写ui自动化测试
 date: 2018-05-12 16:06:26 +0800
-categories: test
+tags: test
 ---
 
 ### 介绍
