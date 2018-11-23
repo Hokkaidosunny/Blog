@@ -13,8 +13,6 @@ RSS: false
 # weibo_username:     huxpro
 # zhihu_username:     huxpro
 github_username: hokkaidosunny
-#twitter_username:  huxpro
-# facebook_username:  huxpro
 
 # Build settings
 # from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
@@ -37,13 +35,9 @@ kramdown:
   input: GFM # use Github Flavored Markdown !important
 
 # Disqus settings
-#disqus_username: _your_disqus_short_name_
-
-# disqus settings
 disqus_username: shenshuaijia
 layout: default
 comments: true
-# other options
 
 # Analytics settings
 # Baidu Analytics
