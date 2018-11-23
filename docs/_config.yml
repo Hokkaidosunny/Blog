@@ -39,10 +39,11 @@ kramdown:
 # Disqus settings
 #disqus_username: _your_disqus_short_name_
 
-# Duoshuo settings
-duoshuo_username:
-# Share component is depend on Comment so we can NOT use share only.
-duoshuo_share: false # set to false if you want to use Comment without Sharing
+# disqus settings
+disqus_username: shenshuaijia
+layout: default
+comments: true
+# other options
 
 # Analytics settings
 # Baidu Analytics
@@ -54,7 +55,7 @@ duoshuo_share: false # set to false if you want to use Comment without Sharing
 # Sidebar settings
 sidebar: true # whether or not using Sidebar.
 sidebar_about_description: '做人呢，最重要的就是开心。'
-sidebar-avatar: /img/avatar-hux.jpg # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/avatar-ssj.jpg # use absolute URL, seeing it's used in both `/` and `/about/`
 
 # Featured Tags
 featured-tags: true # whether or not using Feature-Tags
