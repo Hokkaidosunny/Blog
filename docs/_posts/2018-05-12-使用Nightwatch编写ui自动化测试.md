@@ -72,7 +72,7 @@ Nightwatch 启动的时候默认会去加载 nightwatch.json 配置文件，nigh
         "acceptSslCerts": true
       },
       "globals": {
-        "domain": "http://risk-platform-ui.data.q.test.yiran.com"
+        "domain": "http://xxx.com"
       }
     }
   }
