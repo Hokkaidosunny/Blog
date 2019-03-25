@@ -10,7 +10,6 @@
 - [2018-11-23-使用Enzyme测试react-redux-app](https://github.com/Hokkaidosunny/blog/blob/master/docs/_posts/2018-11-23-使用Enzyme测试react-redux-app.md)
 - [2018-11-20-使用ts来编写测试](https://github.com/Hokkaidosunny/blog/blob/master/docs/_posts/2018-11-20-使用ts来编写测试.md)
 - [2018-05-12-静态类型检测器—Flow入门](https://github.com/Hokkaidosunny/blog/blob/master/docs/_posts/2018-05-12-静态类型检测器—Flow入门.md)
-- [2018-05-12-使用Nightwatch编写ui自动化测试](https://github.com/Hokkaidosunny/blog/blob/master/docs/_posts/2018-05-12-使用Nightwatch编写ui自动化测试.md)
 - [2018-01-26-写一手漂亮的js(react篇)](https://github.com/Hokkaidosunny/blog/blob/master/docs/_posts/2018-01-26-写一手漂亮的js(react篇).md)
 - [2017-12-03-写一手漂亮的js](https://github.com/Hokkaidosunny/blog/blob/master/docs/_posts/2017-12-03-写一手漂亮的js.md)
 - [2017-08-26-用修饰器优雅得写高阶组件](https://github.com/Hokkaidosunny/blog/blob/master/docs/_posts/2017-08-26-用修饰器优雅得写高阶组件.md)
