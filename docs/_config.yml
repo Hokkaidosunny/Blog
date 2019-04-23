@@ -10,8 +10,6 @@ baseurl: '' # for example, '/blog' if your blog hosted on 'host/blog'
 
 # SNS settings
 RSS: false
-# weibo_username:     huxpro
-# zhihu_username:     huxpro
 github_username: hokkaidosunny
 
 # Build settings
@@ -39,13 +37,8 @@ disqus_username: shenshuaijia
 layout: default
 comments: true
 
-# Analytics settings
-
-# Baidu Analytics
-# ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
 # Google Analytics
 ga_track_id: 'UA-129869121-1' # Format: UA-xxxxxx-xx
-# ga_domain: huangxuan.me
 
 # Sidebar settings
 sidebar: true # whether or not using Sidebar.
@@ -55,11 +48,3 @@ sidebar-avatar: /img/avatar-ssj.jpg # use absolute URL, seeing it's used in both
 # Featured Tags
 featured-tags: true # whether or not using Feature-Tags
 featured-condition-size: 1 # A tag will be featured if the size of it is more than this condition value
-
-# Friends
-# friends: [
-#     {
-#         title: "Foo",
-#         href: "#"
-#     }
-# ]
