@@ -16,7 +16,7 @@
 title: Live for fun
 email: shen_shuaijia@163.com
 description: >- # this means to ignore newlines until "baseurl:"
-  shenshuaijia's blog
+  接受自己的平凡，享受生活的乐趣。
 baseurl: '' # the subpath of your site, e.g. /blog
 url: 'http://blog.shenshuaijia.com' # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: jekyllrb
