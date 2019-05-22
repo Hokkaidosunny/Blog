@@ -1,8 +1,11 @@
 {
   "name": "blog",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "shenshuaijia <shen_shuaijia@163.com>",
+  "license": "MIT",
   "scripts": {
-    "start": "cd docs/ && jekyll serve",
+    "dev": "bundle exec jekyll serve",
     "readme": "node ./bin/readme.js"
   }
 }
