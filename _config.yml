@@ -27,6 +27,13 @@ markdown: kramdown
 theme: minima
 plugins:
   - jekyll-feed
+
+# ga
+google_analytics: 'UA-129869121-1'
+
+# disqus
+disqus:
+  shortname: shenshuaijia
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
