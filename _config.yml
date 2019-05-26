@@ -28,6 +28,9 @@ theme: minima
 plugins:
   - jekyll-feed
 
+# 显示摘要
+show_excerpts: false
+
 # ga
 google_analytics: 'UA-129869121-1'
 
