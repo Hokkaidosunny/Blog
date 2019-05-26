@@ -14,6 +14,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Live for fun
+author: shenshuaijia
 email: shen_shuaijia@163.com
 description: >- # this means to ignore newlines until "baseurl:"
   接受自己的平凡，享受生活的乐趣。
@@ -27,6 +28,10 @@ markdown: kramdown
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-pagination
+
+paginate: 10
+paginate_file: index.html
 
 # 显示摘要
 show_excerpts: false
