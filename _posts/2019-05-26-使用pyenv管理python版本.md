@@ -1,6 +1,6 @@
 ---
 layout: post
-title: pyenv简介
+title: 使用pyenv管理python版本
 date: 2019-05-26 16:06:26 +0800
 author: shenshuaijia
 tags: python
