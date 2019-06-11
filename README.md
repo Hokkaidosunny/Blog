@@ -3,6 +3,8 @@
 [https://blog.shenshuaijia.com/](https://blog.shenshuaijia.com/)
 
 
+- [2019-05-26-使用pyenv管理python版本](https://github.com/Hokkaidosunny/blog/blob/master/_posts/2019-05-26-使用pyenv管理python版本.md)
+- [2019-05-26-使用pipenv来管理项目依赖](https://github.com/Hokkaidosunny/blog/blob/master/_posts/2019-05-26-使用pipenv来管理项目依赖.md)
 - [2019-03-14-pixi.js采坑](https://github.com/Hokkaidosunny/blog/blob/master/_posts/2019-03-14-pixi.js采坑.md)
 - [2019-01-16-TypeScript中常用的内置函数](https://github.com/Hokkaidosunny/blog/blob/master/_posts/2019-01-16-TypeScript中常用的内置函数.md)
 - [2019-01-14-使用babel自动化修改代码](https://github.com/Hokkaidosunny/blog/blob/master/_posts/2019-01-14-使用babel自动化修改代码.md)
