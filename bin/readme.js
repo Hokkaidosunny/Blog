@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-const baseUrl = 'https://github.com/Hokkaidosunny/blog/blob/master/_posts/'
+const baseUrl = 'https://github.com/Saul-Shen/blog/blob/master/_posts/'
 const _posts = path.join(__dirname, '../_posts')
 
 const fileNames = fs.readdirSync(_posts)
