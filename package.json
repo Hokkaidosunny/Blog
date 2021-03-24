@@ -5,7 +5,11 @@
   "author": "shenshuaijia <shen_shuaijia@163.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "bundle exec jekyll serve",
-    "readme": "node ./bin/readme.js"
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "devDependencies": {
+    "@vuepress/plugin-blog": "^1.9.4",
+    "vuepress": "^1.8.2"
   }
 }
