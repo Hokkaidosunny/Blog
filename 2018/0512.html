@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>静态类型检测器 Flow 入门 | Saul Shen&#39;s blog</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="Keep simple, keep happy">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.b6bfb1ac.css" as="style"><link rel="preload" href="/blog/assets/js/app.4fe4e32b.js" as="script"><link rel="preload" href="/blog/assets/js/2.6fe09025.js" as="script"><link rel="preload" href="/blog/assets/js/19.57cab65a.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.530dcc5b.js"><link rel="prefetch" href="/blog/assets/js/11.4d53f011.js"><link rel="prefetch" href="/blog/assets/js/12.045882ce.js"><link rel="prefetch" href="/blog/assets/js/13.6645e80b.js"><link rel="prefetch" href="/blog/assets/js/14.d555f6c2.js"><link rel="prefetch" href="/blog/assets/js/15.4161ee70.js"><link rel="prefetch" href="/blog/assets/js/16.3672a1d7.js"><link rel="prefetch" href="/blog/assets/js/17.0127db4b.js"><link rel="prefetch" href="/blog/assets/js/18.291a8fd7.js"><link rel="prefetch" href="/blog/assets/js/20.5789a416.js"><link rel="prefetch" href="/blog/assets/js/21.9266840a.js"><link rel="prefetch" href="/blog/assets/js/22.b62e8f4a.js"><link rel="prefetch" href="/blog/assets/js/23.4a3ae109.js"><link rel="prefetch" href="/blog/assets/js/24.cea5c6c5.js"><link rel="prefetch" href="/blog/assets/js/25.1fca3e8c.js"><link rel="prefetch" href="/blog/assets/js/26.20a38b6d.js"><link rel="prefetch" href="/blog/assets/js/27.1b8292e7.js"><link rel="prefetch" href="/blog/assets/js/28.1d5e2edf.js"><link rel="prefetch" href="/blog/assets/js/29.e8700342.js"><link rel="prefetch" href="/blog/assets/js/3.3692318b.js"><link rel="prefetch" href="/blog/assets/js/30.9eca39c6.js"><link rel="prefetch" href="/blog/assets/js/4.82a020f0.js"><link rel="prefetch" href="/blog/assets/js/5.41beb069.js"><link rel="prefetch" href="/blog/assets/js/6.e8cd7694.js"><link rel="prefetch" href="/blog/assets/js/7.6b1babaf.js"><link rel="prefetch" href="/blog/assets/js/8.9eb0f85d.js"><link rel="prefetch" href="/blog/assets/js/9.d9d6b09e.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.b6bfb1ac.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">Saul Shen's blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="静态类型检测器-flow-入门"><a href="#静态类型检测器-flow-入门" class="header-anchor">#</a> 静态类型检测器 Flow 入门</h1> <blockquote><p><code>2018-05-12</code> by <code>Saul Shen</code></p></blockquote> <h2 id="flow-入门"><a href="#flow-入门" class="header-anchor">#</a> Flow 入门</h2> <h3 id="介绍"><a href="#介绍" class="header-anchor">#</a> 介绍</h3> <p>一个 JAVASCRIPT 静态类型检测器</p> <ul><li>Flow 使用类型接口查找错误，甚至不需要任何类型声明。 它也能够准确地跟踪变量的类型，就像运行时那样</li> <li>Flow 专为 JavaScript 程序员设计。 他能够理解常用 JS 方言和极具动态的特性</li> <li>Flow 能立刻检测代码变化，在开发 JS 时提供快速不断地反馈</li></ul> <h3 id="安装"><a href="#安装" class="header-anchor">#</a> 安装</h3> <ol><li>在项目中安装 flow <code>npm i -D flow-bin</code></li> <li>在项目中安装 babel 插件 <code>npm i -D babel-plugin-transform-flow-strip-types</code></li> <li>在编辑器中安装 flow 插件，各个商店应该会有各自对应的插件</li> <li>全局安装 flow-type<code>npm i -g flow-typed</code>，flow-typed 是什么见下面 👇</li></ol> <h3 id="使用"><a href="#使用" class="header-anchor">#</a> 使用</h3> <h4 id="在-babelrc添加插件"><a href="#在-babelrc添加插件" class="header-anchor">#</a> 在<code>.babelrc</code>添加插件</h4> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;presets&quot;: [
+    &quot;next/babel&quot;
+  ],
+  &quot;plugins&quot;: [
+    &quot;transform-decorators-legacy&quot;,
+    &quot;transform-flow-strip-types&quot;
+  ]
+}
+</code></pre></div><h4 id="在根目录中添加-flowconfig文件"><a href="#在根目录中添加-flowconfig文件" class="header-anchor">#</a> 在根目录中添加<code>.flowconfig</code>文件</h4> <div class="language- extra-class"><pre class="language-text"><code>[ignore]
+&lt;PROJECT_ROOT&gt;/node_modules/.*
+&lt;PROJECT_ROOT&gt;/coverage/.*
+&lt;PROJECT_ROOT&gt;/.next/.*
+
+[options]
+module.file_ext=.js
+module.file_ext=.jsx
+module.file_ext=.json
+module.file_ext=.css
+module.file_ext=.scss
+module.file_ext=.less
+module.name_mapper.extension='css' -&gt; 'empty/object'
+module.name_mapper.extension='scss' -&gt; 'empty/object'
+module.name_mapper.extension='less' -&gt; 'empty/object'
+
+esproposal.decorators=ignore
+
+module.name_mapper='^@src\/\(.*\)$' -&gt; '&lt;PROJECT_ROOT&gt;/\1'
+</code></pre></div><p>这是我项目中的配置文件，主要做了几件事</p> <ol><li>忽略一些不需要检查的文件夹</li> <li>指定需要检查文件的后缀名</li> <li>将样式文件解析成空  对象</li> <li> 运行使用 decorator 语法</li> <li>指定模块解析方式，因为我的模块路径都是@src 开头的</li></ol> <h4 id="在根目录中添加flow-typed文件夹"><a href="#在根目录中添加flow-typed文件夹" class="header-anchor">#</a>  在根目录中添加<code>flow-typed</code>文件夹</h4> <p>这个文件夹是用来存放第三方或者你自己编写的定义文件的地方，在 flow 运行的时候会去读文件夹里所有文件的定义，当然你也可以通过配置文件修改默认文件夹的名字。
+比如新建一个<code>flow-typed/global.js</code>文件,来定义一些全局变量</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>declare <span class="token keyword">var</span> document<span class="token operator">:</span> Object
+
+declare <span class="token keyword">var</span> window<span class="token operator">:</span> Object
+</code></pre></div><h4 id="使用-flow-检查文件"><a href="#使用-flow-检查文件" class="header-anchor">#</a> 使用 flow 检查文件</h4> <p>新建一个文件<code>src/index.js</code></p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">concat</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token operator">:</span> string<span class="token punctuation">,</span> b<span class="token operator">:</span> string</span><span class="token punctuation">)</span><span class="token operator">:</span> string <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> a <span class="token operator">+</span> b
+<span class="token punctuation">}</span>
+
+<span class="token function">concat</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token string">'bar'</span><span class="token punctuation">)</span> <span class="token comment">// Works!</span>
+<span class="token comment">// $ExpectError</span>
+<span class="token function">concat</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token comment">// Error!</span>
+</code></pre></div><p>通过在文件头部添加<code>// @flow</code>来告诉 flow 这是个需要检查的文件，可以看到 flow 是个很自由的  工具，尤其是对已经开发很久的项目来说，可以一点点使用 flow，而不必对整个项目进行改造。
+一但对参数指定好类型后，flow 就可以开始正常工作了，如果需要 flow 检查又没有定义类型，flow 也会提示你去定义。
+对于如何去  定义各种不同的变量、函数，这些在文档中会有更加详细的介绍，这里就不细展开了。</p> <h4 id="类型的模块化"><a href="#类型的模块化" class="header-anchor">#</a> 类型的模块化</h4> <p>怎么去暴露已经定义好的类型给其他文件使用呢？</p> <ol><li>新建一个暴露 js 模块，类型混合的文件<code>a.js</code></li></ol> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">export</span> type <span class="token constant">A</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> string<span class="token punctuation">,</span>
+  value<span class="token operator">:</span> number
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">'a'</span><span class="token punctuation">,</span>
+  value<span class="token operator">:</span> <span class="token number">100</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ol start="2"><li>新建<code>b.js</code>引用<code>a.js</code></li></ol> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> a <span class="token keyword">from</span> <span class="token string">'./a.js'</span>
+<span class="token keyword">import</span> type <span class="token punctuation">{</span> <span class="token constant">A</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./a.js'</span>
+
+<span class="token keyword">const</span> b<span class="token operator">:</span> <span class="token constant">A</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span>a<span class="token punctuation">,</span>
+  name<span class="token operator">:</span> <span class="token string">'b'</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> b
+</code></pre></div><h4 id="使用第三方库"><a href="#使用第三方库" class="header-anchor">#</a> 使用第三方库</h4> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">import</span> _ <span class="token keyword">from</span> <span class="token string">'lodash'</span> <span class="token comment">// Error</span>
+</code></pre></div><p>flow 会报找不到该模块，这个时候需要我们去下载 lodash 的定义文件，用 flow-typed 可以很方便的管理这些第三方库的定义文件</p> <h3 id="flow-typed"><a href="#flow-typed" class="header-anchor">#</a> flow-typed</h3> <p>一个查找安装第三方库定义文件的管理工具</p> <ol><li>查找
+<code>flow-typed search lodash</code></li></ol> <div class="language- extra-class"><pre class="language-text"><code>Found definitions:
+╔════════╤═════════════════╤═════════════════════╗
+║ Name   │ Package Version │ Flow Version        ║
+╟────────┼─────────────────┼─────────────────────╢
+║ lodash │ v4.x.x          │ &gt;=v0.63.x           ║
+╟────────┼─────────────────┼─────────────────────╢
+║ lodash │ v4.x.x          │ &gt;=v0.55.x &lt;=v0.62.x ║
+╟────────┼─────────────────┼─────────────────────╢
+║ lodash │ v4.x.x          │ &gt;=v0.47.x &lt;=v0.54.x ║
+╟────────┼─────────────────┼─────────────────────╢
+║ lodash │ v4.x.x          │ &gt;=v0.38.x &lt;=v0.46.x ║
+╟────────┼─────────────────┼─────────────────────╢
+║ lodash │ v4.x.x          │ &gt;=v0.28.x &lt;=v0.37.x ║
+╚════════╧═════════════════╧═════════════════════╝
+</code></pre></div><ol start="2"><li><p>选一个版本安装<code>flow-typed install lodash@v4.x.x</code>，下载的文件会默认保存在<code>flow-typed/npm</code>文件夹下，并且在 flow 运行的时候自动加载，这个时候就能解决刚刚’模块找不到‘的报错</p></li> <li><p>如果搜索不到对应的  定义文件怎么办？我们可以自己手动新建。</p></li></ol> <ul><li>如果我们从 npm 上下了一个<code>clipboard</code>库使用</li> <li>添加对应的定义，新建文件<code>flow-typed/npm/clipboard.js</code></li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code>declare module <span class="token string">'clipboard'</span> <span class="token punctuation">{</span>
+  declare <span class="token keyword">export</span> <span class="token keyword">default</span> any
+<span class="token punctuation">}</span>
+</code></pre></div><p>这里，我很粗暴的把这个模块定义成了 any 类型，当然如果你对模块熟悉或者想定义的更详细的话，也可以把这个模块的各个属性定义补充完整。具体怎么定义 ，可以查看文档，这里也不展开了。</p> <h3 id="常见问题"><a href="#常见问题" class="header-anchor">#</a> 常见问题</h3> <ol><li>引入 css 文件报错
+我们可以下载一个空模块<code>npm i -D empty</code>，然后在配置文件中，把所有的样式文件指向该模块下的空对象</li></ol> <div class="language- extra-class"><pre class="language-text"><code>[options]
+module.name_mapper.extension='css' -&gt; 'empty/object'
+module.name_mapper.extension='scss' -&gt; 'empty/object'
+module.name_mapper.extension='less' -&gt; 'empty/object'
+</code></pre></div><ol start="2"><li> 使用 window、document 等全局对象报错
+我们可以在<code>flow-typed/xxx.js</code>中，声明这些全局对象的类型</li></ol> <div class="language-javascript extra-class"><pre class="language-javascript"><code>declare <span class="token keyword">var</span> document<span class="token operator">:</span> Object
+
+declare <span class="token keyword">var</span> window<span class="token operator">:</span> Object
+
+declare <span class="token keyword">var</span> process<span class="token operator">:</span> Object
+
+declare <span class="token keyword">function</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token parameter">url<span class="token operator">:</span> string<span class="token punctuation">,</span> option<span class="token operator">?</span><span class="token operator">:</span> any</span><span class="token punctuation">)</span><span class="token operator">:</span> Promise<span class="token operator">&lt;</span>any<span class="token operator">&gt;</span>
+</code></pre></div><ol start="3"><li><p>使用 fetch 报错，见上 👆</p></li> <li><p>使用 decorator 语法报错
+在配置文件中添加</p></li></ol> <div class="language- extra-class"><pre class="language-text"><code>[options]
+esproposal.decorators=ignore
+</code></pre></div><p>很不幸的是，即使忽略 decorator 语法报错，在我们暴露一些经过修饰器修饰的模块给其他文件使用的时候，也会遇到报错的问题，根本原因是 flow 不支持 decorator 语法的类型检查，所以除非这个  模块不会被其他文件使用，可以使用 decorator 语法，不然最好的选择就是不用 decorator 语法</p> <h3 id="最后"><a href="#最后" class="header-anchor">#</a> 最后</h3> <p>感谢阅读，有错误希望能及时指正</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/blog/assets/js/app.4fe4e32b.js" defer></script><script src="/blog/assets/js/2.6fe09025.js" defer></script><script src="/blog/assets/js/19.57cab65a.js" defer></script>
+  </body>
+</html>

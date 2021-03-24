@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>函数式编程入门 | Saul Shen&#39;s blog</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="Keep simple, keep happy">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.b6bfb1ac.css" as="style"><link rel="preload" href="/blog/assets/js/app.4fe4e32b.js" as="script"><link rel="preload" href="/blog/assets/js/2.6fe09025.js" as="script"><link rel="preload" href="/blog/assets/js/12.045882ce.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.530dcc5b.js"><link rel="prefetch" href="/blog/assets/js/11.4d53f011.js"><link rel="prefetch" href="/blog/assets/js/13.6645e80b.js"><link rel="prefetch" href="/blog/assets/js/14.d555f6c2.js"><link rel="prefetch" href="/blog/assets/js/15.4161ee70.js"><link rel="prefetch" href="/blog/assets/js/16.3672a1d7.js"><link rel="prefetch" href="/blog/assets/js/17.0127db4b.js"><link rel="prefetch" href="/blog/assets/js/18.291a8fd7.js"><link rel="prefetch" href="/blog/assets/js/19.57cab65a.js"><link rel="prefetch" href="/blog/assets/js/20.5789a416.js"><link rel="prefetch" href="/blog/assets/js/21.9266840a.js"><link rel="prefetch" href="/blog/assets/js/22.b62e8f4a.js"><link rel="prefetch" href="/blog/assets/js/23.4a3ae109.js"><link rel="prefetch" href="/blog/assets/js/24.cea5c6c5.js"><link rel="prefetch" href="/blog/assets/js/25.1fca3e8c.js"><link rel="prefetch" href="/blog/assets/js/26.20a38b6d.js"><link rel="prefetch" href="/blog/assets/js/27.1b8292e7.js"><link rel="prefetch" href="/blog/assets/js/28.1d5e2edf.js"><link rel="prefetch" href="/blog/assets/js/29.e8700342.js"><link rel="prefetch" href="/blog/assets/js/3.3692318b.js"><link rel="prefetch" href="/blog/assets/js/30.9eca39c6.js"><link rel="prefetch" href="/blog/assets/js/4.82a020f0.js"><link rel="prefetch" href="/blog/assets/js/5.41beb069.js"><link rel="prefetch" href="/blog/assets/js/6.e8cd7694.js"><link rel="prefetch" href="/blog/assets/js/7.6b1babaf.js"><link rel="prefetch" href="/blog/assets/js/8.9eb0f85d.js"><link rel="prefetch" href="/blog/assets/js/9.d9d6b09e.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.b6bfb1ac.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">Saul Shen's blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="函数式编程入门"><a href="#函数式编程入门" class="header-anchor">#</a> 函数式编程入门</h2> <blockquote><p><code>2017-06-10</code> by <code>Saul Shen</code></p></blockquote> <h3 id="来看一个例子"><a href="#来看一个例子" class="header-anchor">#</a> 来看一个例子</h3> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">var</span> <span class="token function-variable function">Flock</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">n</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>seagulls <span class="token operator">=</span> n
+<span class="token punctuation">}</span>
+
+<span class="token class-name">Flock</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">conjoin</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">other</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>seagulls <span class="token operator">+=</span> other<span class="token punctuation">.</span>seagulls
+  <span class="token keyword">return</span> <span class="token keyword">this</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">Flock</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">breed</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">other</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>seagulls <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>seagulls <span class="token operator">*</span> other<span class="token punctuation">.</span>seagulls
+  <span class="token keyword">return</span> <span class="token keyword">this</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> flock_a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Flock</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+<span class="token keyword">var</span> flock_b <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Flock</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token keyword">var</span> flock_c <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Flock</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> result <span class="token operator">=</span> flock_a
+  <span class="token punctuation">.</span><span class="token function">conjoin</span><span class="token punctuation">(</span>flock_c<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">breed</span><span class="token punctuation">(</span>flock_b<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">conjoin</span><span class="token punctuation">(</span>flock_a<span class="token punctuation">.</span><span class="token function">breed</span><span class="token punctuation">(</span>flock_b<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>seagulls
+
+<span class="token comment">//想要表达（（4+0）* 2）+ (4*2)</span>
+<span class="token comment">//实际上 8 + （8*2） -&gt; 16 + 16 -&gt; 32</span>
+</code></pre></div><ul><li>代码的内部可变状态非常难以追踪</li> <li>难以阅读</li> <li>代码量大</li></ul> <p>改造一下</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">var</span> <span class="token function-variable function">conjoin</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">flock_x<span class="token punctuation">,</span> flock_y</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> flock_x <span class="token operator">+</span> flock_y
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> <span class="token function-variable function">breed</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">flock_x<span class="token punctuation">,</span> flock_y</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> flock_x <span class="token operator">*</span> flock_y
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> flock_a <span class="token operator">=</span> <span class="token number">4</span>
+<span class="token keyword">var</span> flock_b <span class="token operator">=</span> <span class="token number">2</span>
+<span class="token keyword">var</span> flock_c <span class="token operator">=</span> <span class="token number">0</span>
+
+<span class="token keyword">var</span> result <span class="token operator">=</span> <span class="token function">conjoin</span><span class="token punctuation">(</span>
+  <span class="token function">breed</span><span class="token punctuation">(</span>flock_b<span class="token punctuation">,</span> <span class="token function">conjoin</span><span class="token punctuation">(</span>flock_a<span class="token punctuation">,</span> flock_c<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token function">breed</span><span class="token punctuation">(</span>flock_a<span class="token punctuation">,</span> flock_b<span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment">//想要表达（（4+0）* 2）+ (4*2)</span>
+<span class="token comment">//实际上 （（4+0）* 2）+ (4*2) -&gt; 16</span>
+</code></pre></div><ul><li>代码量变少了</li> <li>结果正确了</li> <li>但好像还是很难阅读，尤其是嵌套关系</li></ul> <p>再改造一下</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">var</span> <span class="token function-variable function">add</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token punctuation">,</span> y</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> x <span class="token operator">+</span> y
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> <span class="token function-variable function">multiply</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token punctuation">,</span> y</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> x <span class="token operator">*</span> y
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> flock_a <span class="token operator">=</span> <span class="token number">4</span>
+<span class="token keyword">var</span> flock_b <span class="token operator">=</span> <span class="token number">2</span>
+<span class="token keyword">var</span> flock_c <span class="token operator">=</span> <span class="token number">0</span>
+
+<span class="token keyword">var</span> result <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">(</span>
+  <span class="token function">multiply</span><span class="token punctuation">(</span>flock_b<span class="token punctuation">,</span> <span class="token function">add</span><span class="token punctuation">(</span>flock_a<span class="token punctuation">,</span> flock_c<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token function">multiply</span><span class="token punctuation">(</span>flock_a<span class="token punctuation">,</span> flock_b<span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment">//应用一下数学规律</span>
+<span class="token comment">// 结合律（assosiative）</span>
+<span class="token function">add</span><span class="token punctuation">(</span><span class="token function">add</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">,</span> z<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token function">add</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token function">add</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span> z<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 交换律（commutative）</span>
+<span class="token function">add</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token function">add</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span> x<span class="token punctuation">)</span>
+
+<span class="token comment">// 同一律（identity）</span>
+<span class="token function">add</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">==</span> x
+
+<span class="token comment">// 分配律（distributive）</span>
+<span class="token function">multiply</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token function">add</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span> z<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token function">multiply</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">multiply</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> z<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment">//最终可以写成</span>
+<span class="token keyword">var</span> result <span class="token operator">=</span> <span class="token function">multiply</span><span class="token punctuation">(</span>flock_b<span class="token punctuation">,</span> <span class="token function">add</span><span class="token punctuation">(</span>flock_a<span class="token punctuation">,</span> flock_a<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre></div><ul><li>这个数学例子有点不恰当，但意思是这样</li></ul> <h3 id="一等公民函数"><a href="#一等公民函数" class="header-anchor">#</a> 一等公民函数</h3> <h4 id="再看个例子"><a href="#再看个例子" class="header-anchor">#</a> 再看个例子</h4> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">var</span> <span class="token function-variable function">getServerStuff</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">callback</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">ajaxCall</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">json</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">callback</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>优化一下</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">var</span> <span class="token function-variable function">getServerStuff</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">callback</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">ajaxCall</span><span class="token punctuation">(</span>callback<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>再优化一下</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">var</span> getServerStuff <span class="token operator">=</span> ajaxCall
+</code></pre></div><h3 id="在-js-的世界里-函数可以像任何其他类型的数据一样-当作参数传递-赋值给变量-等等。"><a href="#在-js-的世界里-函数可以像任何其他类型的数据一样-当作参数传递-赋值给变量-等等。" class="header-anchor">#</a> 在 js 的世界里， 函数可以像任何其他类型的数据一样，当作参数传递，赋值给变量...等等。</h3> <ul><li>代码量更少</li> <li>减小的可以出错的面积</li> <li>更灵活</li></ul> <h3 id="纯函数"><a href="#纯函数" class="header-anchor">#</a> 纯函数</h3> <h4 id="必要条件"><a href="#必要条件" class="header-anchor">#</a> 必要条件</h4> <ul><li>只依赖参数运行</li> <li>不依赖外部变量</li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">//不纯</span>
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token parameter">v</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> v <span class="token operator">+</span> a
+<span class="token punctuation">}</span>
+
+<span class="token comment">//纯</span>
+<span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token parameter">v</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">1</span>
+  <span class="token keyword">return</span> v <span class="token operator">+</span> a
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>不会产生副作用</li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">//不纯</span>
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token parameter">v</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  a <span class="token operator">=</span> <span class="token number">2</span>
+  <span class="token keyword">return</span> v <span class="token operator">+</span> <span class="token number">1</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//纯</span>
+<span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token parameter">v</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> v <span class="token operator">+</span> <span class="token number">1</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="优点"><a href="#优点" class="header-anchor">#</a> 优点</h3> <ul><li>结果可缓存</li></ul> <p>即相同的输入，永远会得到相同的输出; 当参数不变的时候，可以不用运行，直接返回上一次计算的结果</p> <ul><li>可移植</li></ul> <p>复用性极强，因为它运行只依赖参数</p> <ul><li>测试方便</li> <li>阅读性高</li></ul> <p>尤其这个纯函数只做一件事的时候，最终我们调用多个纯函数的时候：<code>转换为字符串(加一(翻倍(2)))</code></p> <h3 id="柯里化"><a href="#柯里化" class="header-anchor">#</a> 柯里化</h3> <h3 id="概念"><a href="#概念" class="header-anchor">#</a> 概念</h3> <p>只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数</p> <h4 id="看个例子"><a href="#看个例子" class="header-anchor">#</a> 看个例子</h4> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">var</span> <span class="token function-variable function">add</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">y</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> x <span class="token operator">+</span> y
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> increment <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token keyword">var</span> addTen <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+
+<span class="token function">increment</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token comment">// 3</span>
+
+<span class="token function">addTen</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token comment">// 12</span>
+</code></pre></div><h3 id="使用-curry"><a href="#使用-curry" class="header-anchor">#</a> 使用<code>_.curry</code></h3> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">var</span> <span class="token function-variable function">abc</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">[</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> curried <span class="token operator">=</span> _<span class="token punctuation">.</span><span class="token function">curry</span><span class="token punctuation">(</span>abc<span class="token punctuation">)</span>
+
+<span class="token function">curried</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token comment">// =&gt; [1, 2, 3]</span>
+
+<span class="token function">curried</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token comment">// =&gt; [1, 2, 3]</span>
+
+<span class="token function">curried</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token comment">// =&gt; [1, 2, 3]</span>
+
+<span class="token comment">// 使用了占位符</span>
+<span class="token function">curried</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">(</span>_<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token comment">// =&gt; [1, 2, 3]</span>
+</code></pre></div><p>简单使用</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">filter</span><span class="token punctuation">(</span><span class="token parameter">list<span class="token punctuation">,</span> fn</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> list<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> filter_curried <span class="token operator">=</span> _<span class="token punctuation">.</span><span class="token function">curry</span><span class="token punctuation">(</span>filter<span class="token punctuation">)</span>
+
+<span class="token keyword">function</span> <span class="token function">moreThanFive</span><span class="token punctuation">(</span><span class="token parameter">a</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> a <span class="token operator">&gt;</span> <span class="token number">5</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> getMoreThanFive <span class="token operator">=</span> <span class="token function">filter_curried</span><span class="token punctuation">(</span>moreThanFive<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token function">getMoreThanFive</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/blog/assets/js/app.4fe4e32b.js" defer></script><script src="/blog/assets/js/2.6fe09025.js" defer></script><script src="/blog/assets/js/12.045882ce.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>搭建一个完整的 vue 项目 | Saul Shen&#39;s blog</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="Keep simple, keep happy">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.b6bfb1ac.css" as="style"><link rel="preload" href="/blog/assets/js/app.4fe4e32b.js" as="script"><link rel="preload" href="/blog/assets/js/2.6fe09025.js" as="script"><link rel="preload" href="/blog/assets/js/7.6b1babaf.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.530dcc5b.js"><link rel="prefetch" href="/blog/assets/js/11.4d53f011.js"><link rel="prefetch" href="/blog/assets/js/12.045882ce.js"><link rel="prefetch" href="/blog/assets/js/13.6645e80b.js"><link rel="prefetch" href="/blog/assets/js/14.d555f6c2.js"><link rel="prefetch" href="/blog/assets/js/15.4161ee70.js"><link rel="prefetch" href="/blog/assets/js/16.3672a1d7.js"><link rel="prefetch" href="/blog/assets/js/17.0127db4b.js"><link rel="prefetch" href="/blog/assets/js/18.291a8fd7.js"><link rel="prefetch" href="/blog/assets/js/19.57cab65a.js"><link rel="prefetch" href="/blog/assets/js/20.5789a416.js"><link rel="prefetch" href="/blog/assets/js/21.9266840a.js"><link rel="prefetch" href="/blog/assets/js/22.b62e8f4a.js"><link rel="prefetch" href="/blog/assets/js/23.4a3ae109.js"><link rel="prefetch" href="/blog/assets/js/24.cea5c6c5.js"><link rel="prefetch" href="/blog/assets/js/25.1fca3e8c.js"><link rel="prefetch" href="/blog/assets/js/26.20a38b6d.js"><link rel="prefetch" href="/blog/assets/js/27.1b8292e7.js"><link rel="prefetch" href="/blog/assets/js/28.1d5e2edf.js"><link rel="prefetch" href="/blog/assets/js/29.e8700342.js"><link rel="prefetch" href="/blog/assets/js/3.3692318b.js"><link rel="prefetch" href="/blog/assets/js/30.9eca39c6.js"><link rel="prefetch" href="/blog/assets/js/4.82a020f0.js"><link rel="prefetch" href="/blog/assets/js/5.41beb069.js"><link rel="prefetch" href="/blog/assets/js/6.e8cd7694.js"><link rel="prefetch" href="/blog/assets/js/8.9eb0f85d.js"><link rel="prefetch" href="/blog/assets/js/9.d9d6b09e.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.b6bfb1ac.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">Saul Shen's blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="搭建一个完整的-vue-项目"><a href="#搭建一个完整的-vue-项目" class="header-anchor">#</a> 搭建一个完整的 vue 项目</h1> <blockquote><p><code>2016-11-14</code> by <code>Saul Shen</code></p></blockquote> <h3 id="项目连接"><a href="#项目连接" class="header-anchor">#</a> 项目连接</h3> <p><a href="https://github.com/Hokkaidosunny/generator-vue-bucket.git" target="_blank" rel="noopener noreferrer">github 链接<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h3 id="介绍"><a href="#介绍" class="header-anchor">#</a> 介绍</h3> <ul><li>本项目主要介绍如何使用 vue+vuex+vue-router 开启一个 SPA 应用，将应用搭建起来</li> <li>第一次发文，不知道如何开口，那我就直接上代码了，一切尽在注释中，各位看官原谅</li> <li>看这篇文章之前，希望你已经对 vue 有所认识，知道 vuex，vue-router，要是懂一点 flux 原理就更好了</li> <li>如果之前是 react 的用户，我相信转 vue 一定非常 easy，因为两者有很多的共同点</li> <li>用到的技术：<code>vue</code> <code>vuex</code> <code>vue-router</code> <code>fetch</code> <code>sass</code> <code>babel</code> <code>webpack</code> ###目录结构</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code>├── src
+│   ├── components	<span class="token comment">#组件</span>
+│   │   └── Counter.vue
+│   ├── store
+│   │   ├── actions
+│   │   │   ├── counter.js	<span class="token comment">#counter actions</span>
+│   │   │   ├── fetchApi.js	<span class="token comment">#fetch action</span>
+│   │   │   └── index.js	<span class="token comment">##合并导出 actions</span>
+│   │   ├── getters	<span class="token comment">#通过一些函数对store上的元数据做一些操作后再返回给组件使用</span>
+│   │   │   └── index.js
+│   │   ├── mutations	<span class="token comment">#处理上面对应的actions</span>
+│   │   │   ├── counter.js	<span class="token comment">#counter mutations</span>
+│   │   │   ├── fetchApi.js	<span class="token comment">#fetch mutation</span>
+│   │   │   └── index.js	<span class="token comment">#合并导出 mutations</span>
+│   │   └── index.js	<span class="token comment">#合并上面的东西，export store</span>
+│   ├── style <span class="token comment">#样式</span>
+│   │   ├── app.scss
+│   │   ├── counterpage.scss
+│   │   └── homepage.scss
+│   ├── views	<span class="token comment">#页面，由组件拼凑而成</span>
+│   │   ├── App.vue	<span class="token comment">#可以理解为页面的容器，页面在这个容器中切换</span>
+│   │   ├── CounterPage.vue	<span class="token comment">#计算页</span>
+│   │   └── HomePage.vue	<span class="token comment">#首页</span>
+│   ├── index.html	<span class="token comment">#html模板</span>
+│   ├── main.js	<span class="token comment">#入口文件</span>
+│   └── route-config.js	<span class="token comment">#路由配置</span>
+├── package.json
+├── .babelrc
+└── webpack.config.js
+</code></pre></div><h3 id="主要文件"><a href="#主要文件" class="header-anchor">#</a> 主要文件</h3> <h5 id="src-main-js"><a href="#src-main-js" class="header-anchor">#</a> <code>src/main.js</code></h5> <p>做为入口文件，我们当然会把所有要用到的都给引入进来。</p> <p>引入 router 很简单，创建一个 VueRouter 的实例，最重要的两个参数一个就是路由模式，一个就是路由配置(见下)，创建好以后，扔到 Vue 实例的配置中就行，最终路由的所有相关信息都会挂在<code>this.$router</code>上，组件可以通过<code>this.$router</code>直接访问。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'es6-promise'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">polyfill</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//es6 promise</span>
+<span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'isomorphic-fetch'</span><span class="token punctuation">)</span> <span class="token comment">//fetch库</span>
+
+<span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<span class="token keyword">import</span> VueRouter <span class="token keyword">from</span> <span class="token string">'vue-router'</span>
+<span class="token keyword">import</span> routes <span class="token keyword">from</span> <span class="token string">'./route-config.js'</span> <span class="token comment">//路由配置</span>
+<span class="token keyword">import</span> store <span class="token keyword">from</span> <span class="token string">'./store/index.js'</span> <span class="token comment">//store</span>
+<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./views/App.vue'</span> <span class="token comment">//页面容器</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>VueRouter<span class="token punctuation">)</span> <span class="token comment">//vue使用veux，vue-router 都是通过Vue这个对象上的use这个方法。</span>
+
+<span class="token comment">//创建路由</span>
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  mode<span class="token operator">:</span> <span class="token string">'hash'</span><span class="token punctuation">,</span> <span class="token comment">//路由的模式</span>
+  routes
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">//将store, router加入并生成应用</span>
+<span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  el<span class="token operator">:</span> <span class="token string">'#application'</span><span class="token punctuation">,</span>
+  store<span class="token punctuation">,</span>
+  router<span class="token punctuation">,</span>
+  <span class="token function-variable function">render</span><span class="token operator">:</span> <span class="token parameter">h</span> <span class="token operator">=&gt;</span> <span class="token function">h</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h5 id="src-route-config-js"><a href="#src-route-config-js" class="header-anchor">#</a> <code>src/route-config.js</code></h5> <p>路由配置也很简单，文档有详细的例子。如果应用过大，打包到一个 js 文件里有点不合适，我们可以在这里引入页面的时候做页面的懒加载，就是 code spliting。<a href="https://router.vuejs.org/zh-cn/advanced/lazy-loading.html" target="_blank" rel="noopener noreferrer">懒加载例子<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> HomePage <span class="token keyword">from</span> <span class="token string">'./views/HomePage.vue'</span> <span class="token comment">//引入页面</span>
+<span class="token keyword">import</span> CounterPage <span class="token keyword">from</span> <span class="token string">'./views/CounterPage.vue'</span>
+
+<span class="token comment">//当然真正应用的路由不会这么简单，vue-router也提供动态路由，嵌套路由等等，详见vue-router文档</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> path<span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span> component<span class="token operator">:</span> HomePage <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> path<span class="token operator">:</span> <span class="token string">'/counter'</span><span class="token punctuation">,</span> component<span class="token operator">:</span> CounterPage <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre></div><h5 id="src-store-index-js"><a href="#src-store-index-js" class="header-anchor">#</a> <code>src/store/index.js</code></h5> <p>同使用 vue-router 一样，先调一下 use 方法，然后新建一个 Store 实例，把 state，actions，getters，mutations 全扔进去。</p> <p>最终将 store 抛出，会被用在新建 vue 实例的时候。同样 store 的所有相关会挂在 this.$store上，组件可以通过this.$store 直接访问。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<span class="token keyword">import</span> Vuex <span class="token keyword">from</span> <span class="token string">'vuex'</span>
+<span class="token keyword">import</span> actions <span class="token keyword">from</span> <span class="token string">'./actions/index.js'</span>
+<span class="token keyword">import</span> mutations <span class="token keyword">from</span> <span class="token string">'./mutations/index.js'</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> getters <span class="token keyword">from</span> <span class="token string">'./getters/index.js'</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>Vuex<span class="token punctuation">)</span>
+
+<span class="token comment">//state</span>
+<span class="token keyword">const</span> state <span class="token operator">=</span> <span class="token punctuation">{</span>
+  count<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token comment">//counter actions 操作的值</span>
+  pageData<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">//fetch action 操作的值</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//把上面的融到一起</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">new</span> <span class="token class-name">Vuex<span class="token punctuation">.</span>Store</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  state<span class="token punctuation">,</span>
+  actions<span class="token punctuation">,</span>
+  getters<span class="token punctuation">,</span>
+  mutations
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h5 id="src-views-app-vue"><a href="#src-views-app-vue" class="header-anchor">#</a> <code>src/views/App.vue</code></h5> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>sass<span class="token punctuation">&quot;</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>../style/app.scss<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token style"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>html<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>app<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token comment">&lt;!--
+      你也可以在其他地方使用&lt;router-view&gt;&lt;/router-view&gt;来创建嵌套路由，详见vue-router文档
+    --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-view</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-view</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h3 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h3> <p>看到这里，各位聪明的看官，一定已经知道如何把 vue，vuex，vue-router 串联起来了。</p> <p>vue 的官方文档很全，也出了中文文档，而且 vue 的设计思路清晰，应用的结构也比较简单明了，所以上手 vue 不是一件很难的事情。</p> <p>分享一波文档地址：</p> <p><a href="https://vuefe.cn/" target="_blank" rel="noopener noreferrer">vue<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <a href="https://vuefe.cn/vuex/" target="_blank" rel="noopener noreferrer">vuex<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <a href="https://router.vuejs.org/zh-cn/" target="_blank" rel="noopener noreferrer">vue-router<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>最后各位别忘了 github 右上角点波关注, 噢，说错了，点颗 star (￣３￣)，谢谢大家</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/blog/assets/js/app.4fe4e32b.js" defer></script><script src="/blog/assets/js/2.6fe09025.js" defer></script><script src="/blog/assets/js/7.6b1babaf.js" defer></script>
+  </body>
+</html>

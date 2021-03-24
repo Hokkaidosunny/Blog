@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>写一手漂亮的 js | Saul Shen&#39;s blog</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="Keep simple, keep happy">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.b6bfb1ac.css" as="style"><link rel="preload" href="/blog/assets/js/app.4fe4e32b.js" as="script"><link rel="preload" href="/blog/assets/js/2.6fe09025.js" as="script"><link rel="preload" href="/blog/assets/js/16.3672a1d7.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.530dcc5b.js"><link rel="prefetch" href="/blog/assets/js/11.4d53f011.js"><link rel="prefetch" href="/blog/assets/js/12.045882ce.js"><link rel="prefetch" href="/blog/assets/js/13.6645e80b.js"><link rel="prefetch" href="/blog/assets/js/14.d555f6c2.js"><link rel="prefetch" href="/blog/assets/js/15.4161ee70.js"><link rel="prefetch" href="/blog/assets/js/17.0127db4b.js"><link rel="prefetch" href="/blog/assets/js/18.291a8fd7.js"><link rel="prefetch" href="/blog/assets/js/19.57cab65a.js"><link rel="prefetch" href="/blog/assets/js/20.5789a416.js"><link rel="prefetch" href="/blog/assets/js/21.9266840a.js"><link rel="prefetch" href="/blog/assets/js/22.b62e8f4a.js"><link rel="prefetch" href="/blog/assets/js/23.4a3ae109.js"><link rel="prefetch" href="/blog/assets/js/24.cea5c6c5.js"><link rel="prefetch" href="/blog/assets/js/25.1fca3e8c.js"><link rel="prefetch" href="/blog/assets/js/26.20a38b6d.js"><link rel="prefetch" href="/blog/assets/js/27.1b8292e7.js"><link rel="prefetch" href="/blog/assets/js/28.1d5e2edf.js"><link rel="prefetch" href="/blog/assets/js/29.e8700342.js"><link rel="prefetch" href="/blog/assets/js/3.3692318b.js"><link rel="prefetch" href="/blog/assets/js/30.9eca39c6.js"><link rel="prefetch" href="/blog/assets/js/4.82a020f0.js"><link rel="prefetch" href="/blog/assets/js/5.41beb069.js"><link rel="prefetch" href="/blog/assets/js/6.e8cd7694.js"><link rel="prefetch" href="/blog/assets/js/7.6b1babaf.js"><link rel="prefetch" href="/blog/assets/js/8.9eb0f85d.js"><link rel="prefetch" href="/blog/assets/js/9.d9d6b09e.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.b6bfb1ac.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">Saul Shen's blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="写一手漂亮的-js"><a href="#写一手漂亮的-js" class="header-anchor">#</a> 写一手漂亮的 js</h1> <blockquote><p><code>2017-12-03</code> by <code>Saul Shen</code></p></blockquote> <h2 id="介绍"><a href="#介绍" class="header-anchor">#</a> 介绍</h2> <p>看了很多 best practice，却没有人教我怎么去写一手漂亮的 js 代码，今天我来讲讲我自己写 js 的经验</p> <h3 id="不要在代码中留大段注释掉的代码"><a href="#不要在代码中留大段注释掉的代码" class="header-anchor">#</a> 不要在代码中留大段注释掉的代码</h3> <ul><li>留给 git 去管理，不然你要 git 干嘛</li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// bad</span>
+
+<span class="token comment">// function add() {</span>
+<span class="token comment">//   const a = b + c</span>
+<span class="token comment">//   return a</span>
+<span class="token comment">// }</span>
+
+<span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> a <span class="token operator">+</span> <span class="token number">1000</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> a <span class="token operator">+</span> <span class="token number">1000</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="适当地换行"><a href="#适当地换行" class="header-anchor">#</a> 适当地换行</h3> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// bad</span>
+<span class="token keyword">function</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> state_a<span class="token punctuation">,</span> state_b<span class="token punctuation">,</span> state_c <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span> state_a<span class="token operator">:</span> state_a <span class="token operator">*</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token string">'done'</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">function</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> state_a<span class="token punctuation">,</span> state_b<span class="token punctuation">,</span> state_c <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state
+
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span> state_a<span class="token operator">:</span> state_a <span class="token operator">*</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">return</span> <span class="token string">'done'</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="适当的添加注释-但不要疯狂的添加注释"><a href="#适当的添加注释-但不要疯狂的添加注释" class="header-anchor">#</a> 适当的添加注释，但不要疯狂的添加注释</h3> <ul><li>对一段代码或者一行特别需要注意的代码注释</li> <li>不要疯狂的注释，太啰嗦，漂亮的代码自己会说话</li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// bad</span>
+<span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token string">'a'</span> <span class="token comment">// 这是a</span>
+<span class="token keyword">const</span> b <span class="token operator">=</span> <span class="token string">'b'</span> <span class="token comment">// 这是b</span>
+<span class="token keyword">const</span> c <span class="token operator">=</span> <span class="token string">'c'</span> <span class="token comment">// 这是c</span>
+
+<span class="token comment">// good</span>
+<span class="token comment">/**
+ * 申明变量
+ */</span>
+<span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token string">'a'</span>
+<span class="token keyword">const</span> b <span class="token operator">=</span> <span class="token string">'b'</span>
+<span class="token keyword">const</span> c <span class="token operator">=</span> <span class="token string">'c'</span>
+</code></pre></div><h3 id="将类似行为、命名的代码归类在一起"><a href="#将类似行为、命名的代码归类在一起" class="header-anchor">#</a> 将类似行为、命名的代码归类在一起</h3> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// bad</span>
+<span class="token keyword">function</span> <span class="token function">handleClick</span><span class="token punctuation">(</span><span class="token parameter">arr</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span>
+
+  arr<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">e</span> <span class="token operator">=&gt;</span> e <span class="token operator">+</span> a<span class="token punctuation">)</span>
+
+  <span class="token keyword">const</span> b <span class="token operator">=</span> <span class="token number">2</span>
+
+  <span class="token keyword">return</span> arr<span class="token punctuation">.</span>length <span class="token operator">+</span> b
+<span class="token punctuation">}</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">function</span> <span class="token function">handleClick</span><span class="token punctuation">(</span><span class="token parameter">arr</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span>
+  <span class="token keyword">const</span> b <span class="token operator">=</span> <span class="token number">2</span>
+
+  arr<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">e</span> <span class="token operator">=&gt;</span> e <span class="token operator">+</span> a<span class="token punctuation">)</span>
+
+  <span class="token keyword">return</span> arr<span class="token punctuation">.</span>length <span class="token operator">+</span> b
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="在不破坏语义性的情况下-能省则省"><a href="#在不破坏语义性的情况下-能省则省" class="header-anchor">#</a> 在不破坏语义性的情况下，'能省则省'</h3> <ul><li>牢记 js 中函数是一等公民</li> <li>但如果省略到影响可读性了，就是失败的</li> <li>在可读性和简洁性之间必须选一个的话，永远先选可读性</li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token parameter">a</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> a <span class="token operator">+</span> <span class="token number">1</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">// bad</span>
+arr<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">a</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">add</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span>
+
+<span class="token comment">// good</span>
+arr<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>add<span class="token punctuation">)</span>
+
+<span class="token function">setTimeout</span><span class="token punctuation">(</span>doSomething<span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span>
+</code></pre></div><ul><li>箭头函数</li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// bad</span>
+<span class="token keyword">const</span> <span class="token function-variable function">a</span> <span class="token operator">=</span> <span class="token parameter">v</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> v <span class="token operator">+</span> <span class="token number">1</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">const</span> <span class="token function-variable function">a</span> <span class="token operator">=</span> <span class="token parameter">v</span> <span class="token operator">=&gt;</span> v <span class="token operator">+</span> <span class="token number">1</span>
+
+<span class="token comment">// bad</span>
+<span class="token keyword">const</span> <span class="token function-variable function">b</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">v<span class="token punctuation">,</span> i</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    v<span class="token punctuation">,</span>
+    i
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">const</span> <span class="token function-variable function">b</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">v<span class="token punctuation">,</span> i</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> v<span class="token punctuation">,</span> i <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// bad</span>
+<span class="token keyword">const</span> <span class="token function-variable function">c</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token parameter">dispatch</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// doSomething</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">const</span> <span class="token function-variable function">c</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token parameter">dispatch</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// doSomething</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>提前对对象取值(写 react 的同学一定懂)</li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// bad</span>
+<span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>prop_a <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>prop_b
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span><span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> prop_a<span class="token punctuation">,</span> prop_b<span class="token punctuation">,</span> fun <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props
+
+<span class="token keyword">const</span> a <span class="token operator">=</span> prop_a <span class="token operator">+</span> prop_b
+
+<span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><h3 id="合理使用各种表达式"><a href="#合理使用各种表达式" class="header-anchor">#</a> 合理使用各种表达式</h3> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// bad</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>cb<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">cb</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// good</span>
+cb <span class="token operator">&amp;&amp;</span> <span class="token function">cb</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">// bad</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> b
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> c
+<span class="token punctuation">}</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">return</span> a <span class="token operator">?</span> b <span class="token operator">:</span> c
+
+<span class="token comment">// bad</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  c <span class="token operator">=</span> a
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  c <span class="token operator">=</span> <span class="token string">'default'</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// good</span>
+c <span class="token operator">=</span> a <span class="token operator">||</span> <span class="token string">'default'</span>
+</code></pre></div><h3 id="链式调用写法"><a href="#链式调用写法" class="header-anchor">#</a> 链式调用写法</h3> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// bad</span>
+<span class="token function">fetch</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">res</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// doSomething</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">e</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// good</span>
+<span class="token function">fetch</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">res</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// doSomething</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">e</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h3 id="保持代码是纵向发展的"><a href="#保持代码是纵向发展的" class="header-anchor">#</a> 保持代码是纵向发展的</h3> <ul><li>发现那些在整个文件中特别'突出'的代码时，应该考虑对他们做换行处理了</li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// bad</span>
+<span class="token keyword">return</span> <span class="token function">handleClick</span><span class="token punctuation">(</span>type<span class="token punctuation">,</span> key<span class="token punctuation">,</span> ref<span class="token punctuation">,</span> self<span class="token punctuation">,</span> source<span class="token punctuation">,</span> props<span class="token punctuation">)</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">return</span> <span class="token function">handleClick</span><span class="token punctuation">(</span>type<span class="token punctuation">,</span> key<span class="token punctuation">,</span> ref<span class="token punctuation">,</span> self<span class="token punctuation">,</span> source<span class="token punctuation">,</span> props<span class="token punctuation">)</span>
+
+<span class="token comment">// bad</span>
+<span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>prop_a <span class="token operator">===</span> <span class="token string">'hello'</span> <span class="token operator">?</span> <span class="token operator">&lt;</span>di<span class="token operator">&gt;</span>world<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span> <span class="token operator">:</span> <span class="token keyword">null</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>prop_a <span class="token operator">===</span> <span class="token string">'hello'</span> <span class="token operator">?</span> <span class="token operator">&lt;</span>di<span class="token operator">&gt;</span>world<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span> <span class="token operator">:</span> <span class="token keyword">null</span>
+</code></pre></div><h2 id="适当的使用三元表达式子"><a href="#适当的使用三元表达式子" class="header-anchor">#</a> 适当的使用三元表达式子</h2> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 当只有一行执行语句的时候，使用三元表达式</span>
+<span class="token comment">// bad</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>isEdit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  <span class="token function">reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// good</span>
+isEdit <span class="token operator">?</span> <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 当有多行执行语句的时候</span>
+<span class="token comment">// good</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>isEdit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">one</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">two</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  <span class="token function">reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="提前返回"><a href="#提前返回" class="header-anchor">#</a> 提前返回</h2> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 当只有一行执行语句的时候</span>
+<span class="token comment">// emmm... ok, not bad</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>isOk<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">one</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 且表达式</span>
+<span class="token comment">// good</span>
+isOk <span class="token operator">&amp;&amp;</span> <span class="token function">one</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 当有多行执行语句的时候</span>
+<span class="token comment">// bad</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>isOk<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">one</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">tow</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">three</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isOk<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">one</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">tow</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">three</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>个人经验，如有错误，还望指正</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/blog/assets/js/app.4fe4e32b.js" defer></script><script src="/blog/assets/js/2.6fe09025.js" defer></script><script src="/blog/assets/js/16.3672a1d7.js" defer></script>
+  </body>
+</html>

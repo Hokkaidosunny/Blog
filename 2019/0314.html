@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Pixi.js 采坑 | Saul Shen&#39;s blog</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="Keep simple, keep happy">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.b6bfb1ac.css" as="style"><link rel="preload" href="/blog/assets/js/app.4fe4e32b.js" as="script"><link rel="preload" href="/blog/assets/js/2.6fe09025.js" as="script"><link rel="preload" href="/blog/assets/js/25.1fca3e8c.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.530dcc5b.js"><link rel="prefetch" href="/blog/assets/js/11.4d53f011.js"><link rel="prefetch" href="/blog/assets/js/12.045882ce.js"><link rel="prefetch" href="/blog/assets/js/13.6645e80b.js"><link rel="prefetch" href="/blog/assets/js/14.d555f6c2.js"><link rel="prefetch" href="/blog/assets/js/15.4161ee70.js"><link rel="prefetch" href="/blog/assets/js/16.3672a1d7.js"><link rel="prefetch" href="/blog/assets/js/17.0127db4b.js"><link rel="prefetch" href="/blog/assets/js/18.291a8fd7.js"><link rel="prefetch" href="/blog/assets/js/19.57cab65a.js"><link rel="prefetch" href="/blog/assets/js/20.5789a416.js"><link rel="prefetch" href="/blog/assets/js/21.9266840a.js"><link rel="prefetch" href="/blog/assets/js/22.b62e8f4a.js"><link rel="prefetch" href="/blog/assets/js/23.4a3ae109.js"><link rel="prefetch" href="/blog/assets/js/24.cea5c6c5.js"><link rel="prefetch" href="/blog/assets/js/26.20a38b6d.js"><link rel="prefetch" href="/blog/assets/js/27.1b8292e7.js"><link rel="prefetch" href="/blog/assets/js/28.1d5e2edf.js"><link rel="prefetch" href="/blog/assets/js/29.e8700342.js"><link rel="prefetch" href="/blog/assets/js/3.3692318b.js"><link rel="prefetch" href="/blog/assets/js/30.9eca39c6.js"><link rel="prefetch" href="/blog/assets/js/4.82a020f0.js"><link rel="prefetch" href="/blog/assets/js/5.41beb069.js"><link rel="prefetch" href="/blog/assets/js/6.e8cd7694.js"><link rel="prefetch" href="/blog/assets/js/7.6b1babaf.js"><link rel="prefetch" href="/blog/assets/js/8.9eb0f85d.js"><link rel="prefetch" href="/blog/assets/js/9.d9d6b09e.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.b6bfb1ac.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">Saul Shen's blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="pixi-js-采坑"><a href="#pixi-js-采坑" class="header-anchor">#</a> Pixi.js 采坑</h1> <blockquote><p><code>2019-03-14</code> by <code>Saul Shen</code></p></blockquote> <h1 id="我在使用-pixi-js-中遇到的问题"><a href="#我在使用-pixi-js-中遇到的问题" class="header-anchor">#</a> 我在使用 pixi.js 中遇到的问题</h1> <h2 id="画出来的图形锯齿严重"><a href="#画出来的图形锯齿严重" class="header-anchor">#</a> 画出来的图形锯齿严重</h2> <p>pixi 有两个属性可以获得更好的效果，antialias 设置为 true 可以抗锯齿，但只适用于 canvas render 的时候,所以需要设置 forceCanvas 为 true。但是 canvas 在渲染大量数据的时候没有 webgl 性能更好。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">this</span><span class="token punctuation">.</span>app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PIXI<span class="token punctuation">.</span>Application</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  backgroundColor<span class="token punctuation">,</span>
+  width<span class="token punctuation">,</span>
+  height<span class="token punctuation">,</span>
+  autoResize<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  resolution<span class="token operator">:</span> window<span class="token punctuation">.</span>devicePixelRatio <span class="token operator">||</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  antialias<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">// 抗锯齿</span>
+  forceCanvas<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token comment">// canvas画出来的图形更流畅但是会有性能问题</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="如何自适应容器大小"><a href="#如何自适应容器大小" class="header-anchor">#</a> 如何自适应容器大小</h2> <p>pixi 其实有个方法可以重新设置 view 的大小。只要监听容器的变化，然后不断的去设置 view 的大小为容器大小就行</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> parent <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>app<span class="token punctuation">.</span>view<span class="token punctuation">.</span>parentNode
+<span class="token keyword">this</span><span class="token punctuation">.</span>app<span class="token punctuation">.</span>renderer<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span>parent<span class="token punctuation">.</span>clientWidth<span class="token punctuation">,</span> parent<span class="token punctuation">.</span>clientHeight<span class="token punctuation">)</span>
+</code></pre></div><h2 id="如何以鼠标为中心放大缩小"><a href="#如何以鼠标为中心放大缩小" class="header-anchor">#</a> 如何以鼠标为中心放大缩小</h2> <p>pixi 容器 container 一开始在 parent 中的位置永远是从 x=0, y=0 开始的。
+如果在 container 中有个图形 x=10, y=10, 那么容器就会和下图中一样。
+这个时候对容器放大，其实就是在增大容器的宽高，容器里的图形在放大的同时，会不断的往右下方移动。
+所以如果以鼠标点为中心放大的话，需要不断的调整容器的 x，y，让容器往左上方移动。缩小同理。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">/**
+ *  --------------
+ * | ------       |
+ * ||      |      |
+ * ||     .|      |
+ * | ------       |
+ * |              |
+ *  --------------
+ *
+ */</span>
+
+<span class="token comment">// 以 10% 放大为例</span>
+container<span class="token punctuation">.</span>scale<span class="token punctuation">.</span>x <span class="token operator">*=</span> <span class="token number">1.1</span>
+container<span class="token punctuation">.</span>scale<span class="token punctuation">.</span>y <span class="token operator">*=</span> <span class="token number">1.1</span>
+
+<span class="token comment">// 矫正位置</span>
+container<span class="token punctuation">.</span>x <span class="token operator">=</span> container<span class="token punctuation">.</span>x <span class="token operator">-</span> <span class="token number">0.1</span> <span class="token operator">*</span> <span class="token punctuation">(</span>centerPoint<span class="token punctuation">.</span>x <span class="token operator">-</span> container<span class="token punctuation">.</span>x<span class="token punctuation">)</span>
+container<span class="token punctuation">.</span>y <span class="token operator">=</span> container<span class="token punctuation">.</span>y <span class="token operator">-</span> <span class="token number">0.1</span> <span class="token operator">*</span> <span class="token punctuation">(</span>centerPoint<span class="token punctuation">.</span>y <span class="token operator">-</span> container<span class="token punctuation">.</span>y<span class="token punctuation">)</span>
+
+<span class="token comment">// 缩小10%</span>
+container<span class="token punctuation">.</span>scale<span class="token punctuation">.</span>x <span class="token operator">/=</span> <span class="token number">1.1</span>
+container<span class="token punctuation">.</span>scale<span class="token punctuation">.</span>y <span class="token operator">/=</span> <span class="token number">1.1</span>
+
+<span class="token comment">// 矫正位置</span>
+container<span class="token punctuation">.</span>x <span class="token operator">=</span> container<span class="token punctuation">.</span>x <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">0.1</span> <span class="token operator">*</span> <span class="token punctuation">(</span>centerPoint<span class="token punctuation">.</span>x <span class="token operator">-</span> container<span class="token punctuation">.</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1.1</span>
+container<span class="token punctuation">.</span>y <span class="token operator">=</span> container<span class="token punctuation">.</span>y <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">0.1</span> <span class="token operator">*</span> <span class="token punctuation">(</span>centerPoint<span class="token punctuation">.</span>y <span class="token operator">-</span> container<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1.1</span>
+</code></pre></div><h2 id="拖动视图"><a href="#拖动视图" class="header-anchor">#</a> 拖动视图</h2> <p>这个在 pixi 的 wiki 中有 demo</p> <h2 id="连接不同容器中的点"><a href="#连接不同容器中的点" class="header-anchor">#</a> 连接不同容器中的点</h2> <p>pixi 中的坐标都是相对于 parent 容器的相对坐标，所以要把不同容器中的点连接在一起，就需要获取绝对坐标。
+（如果不同容器的 scale 不同的话，还要把坐标除掉 scale 才行）</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// container1中有点 pointer1</span>
+<span class="token keyword">const</span> p1_global <span class="token operator">=</span> pointer1<span class="token punctuation">.</span><span class="token function">getGlobalPosition</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">// container2中有点 pointer2</span>
+<span class="token keyword">const</span> p2_global <span class="token operator">=</span> pointer2<span class="token punctuation">.</span><span class="token function">getGlobalPosition</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 画一条线放在container3中</span>
+<span class="token keyword">const</span> c3_global <span class="token operator">=</span> container3<span class="token punctuation">.</span><span class="token function">getGlobalPosition</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 计算出在container3中线的起点终点的相对位置, 然后连接起来，把线放到container3中</span>
+<span class="token keyword">const</span> startPosition <span class="token operator">=</span> <span class="token punctuation">{</span>
+  x<span class="token operator">:</span> p1_global<span class="token punctuation">.</span>x <span class="token operator">-</span> c3_global<span class="token punctuation">.</span>x<span class="token punctuation">,</span>
+  y<span class="token operator">:</span> p1_global<span class="token punctuation">.</span>y <span class="token operator">-</span> c3_global<span class="token punctuation">.</span>y
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> endPosition <span class="token operator">=</span> <span class="token punctuation">{</span>
+  x<span class="token operator">:</span> p2_global<span class="token punctuation">.</span>x <span class="token operator">-</span> c3_global<span class="token punctuation">.</span>x<span class="token punctuation">,</span>
+  y<span class="token operator">:</span> p2_global<span class="token punctuation">.</span>y <span class="token operator">-</span> c3_global<span class="token punctuation">.</span>y
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="滤镜"><a href="#滤镜" class="header-anchor">#</a> 滤镜</h2> <p>pixi 可以给 sprite 等添加滤镜，比如增加阴影等, 这里需要用到一个独立的库<code>pixi-filters</code>,里面内置里不同的滤镜。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> DropShadowFilter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'pixi-filters'</span>
+
+<span class="token keyword">const</span> shadow <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DropShadowFilter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  color<span class="token operator">:</span> <span class="token number">0x000000</span><span class="token punctuation">,</span>
+  alpha<span class="token operator">:</span> <span class="token number">0.8</span><span class="token punctuation">,</span> <span class="token comment">// 不透明度</span>
+  blur<span class="token operator">:</span> <span class="token number">1</span> <span class="token comment">// 模糊程度</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 添加滤镜</span>
+sprite<span class="token punctuation">.</span>filters <span class="token operator">=</span> <span class="token punctuation">[</span>shadow<span class="token punctuation">]</span>
+</code></pre></div><h2 id="监听一条线的事件"><a href="#监听一条线的事件" class="header-anchor">#</a> 监听一条线的事件</h2> <p>pixi 没法直接监听一条线上的事件，我猜估计是线比较特殊，没有面积这个概念。
+但是所有的图形都有 hitArea 这个属性，用来设定事件的触发区域，如果它是个有面积的多边形，就能监听到事件了。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// 画一条线肯定有2个点，只要在这两个点附近再取两个点，变成4个点，连成一个4边行就行</span>
+<span class="token keyword">const</span> offset <span class="token operator">=</span> <span class="token number">2</span>
+
+<span class="token keyword">const</span> poly <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PIXI<span class="token punctuation">.</span>Polygon</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+  <span class="token keyword">new</span> <span class="token class-name">PIXI<span class="token punctuation">.</span>Point</span><span class="token punctuation">(</span>begin<span class="token punctuation">.</span>x <span class="token operator">-</span> offset<span class="token punctuation">,</span> begin<span class="token punctuation">.</span>y <span class="token operator">-</span> offset<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">new</span> <span class="token class-name">PIXI<span class="token punctuation">.</span>Point</span><span class="token punctuation">(</span>begin<span class="token punctuation">.</span>x <span class="token operator">+</span> offset<span class="token punctuation">,</span> begin<span class="token punctuation">.</span>y <span class="token operator">+</span> offset<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">new</span> <span class="token class-name">PIXI<span class="token punctuation">.</span>Point</span><span class="token punctuation">(</span>end<span class="token punctuation">.</span>x <span class="token operator">+</span> offset<span class="token punctuation">,</span> end<span class="token punctuation">.</span>y <span class="token operator">+</span> offset<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">new</span> <span class="token class-name">PIXI<span class="token punctuation">.</span>Point</span><span class="token punctuation">(</span>end<span class="token punctuation">.</span>x <span class="token operator">-</span> offset<span class="token punctuation">,</span> end<span class="token punctuation">.</span>y <span class="token operator">-</span> offset<span class="token punctuation">)</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+line<span class="token punctuation">.</span>interactive <span class="token operator">=</span> <span class="token boolean">true</span>
+line<span class="token punctuation">.</span>hitArea <span class="token operator">=</span> poly
+</code></pre></div><h2 id="容器在-z-轴的位置"><a href="#容器在-z-轴的位置" class="header-anchor">#</a> 容器在 Z 轴的位置</h2> <p>pixi 有一个<code>pixi-layers</code>的库来解决 z-index 的问题，或者，最后添加的容器就在最上面。</p> <h2 id="动画"><a href="#动画" class="header-anchor">#</a> 动画</h2> <p>配合<code>animejs</code>，不断重新绘制 view 就行</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/blog/assets/js/app.4fe4e32b.js" defer></script><script src="/blog/assets/js/2.6fe09025.js" defer></script><script src="/blog/assets/js/25.1fca3e8c.js" defer></script>
+  </body>
+</html>

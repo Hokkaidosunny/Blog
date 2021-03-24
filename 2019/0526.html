@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>使用 pipenv 来管理项目依赖 | Saul Shen&#39;s blog</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="Keep simple, keep happy">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.b6bfb1ac.css" as="style"><link rel="preload" href="/blog/assets/js/app.4fe4e32b.js" as="script"><link rel="preload" href="/blog/assets/js/2.6fe09025.js" as="script"><link rel="preload" href="/blog/assets/js/26.20a38b6d.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.530dcc5b.js"><link rel="prefetch" href="/blog/assets/js/11.4d53f011.js"><link rel="prefetch" href="/blog/assets/js/12.045882ce.js"><link rel="prefetch" href="/blog/assets/js/13.6645e80b.js"><link rel="prefetch" href="/blog/assets/js/14.d555f6c2.js"><link rel="prefetch" href="/blog/assets/js/15.4161ee70.js"><link rel="prefetch" href="/blog/assets/js/16.3672a1d7.js"><link rel="prefetch" href="/blog/assets/js/17.0127db4b.js"><link rel="prefetch" href="/blog/assets/js/18.291a8fd7.js"><link rel="prefetch" href="/blog/assets/js/19.57cab65a.js"><link rel="prefetch" href="/blog/assets/js/20.5789a416.js"><link rel="prefetch" href="/blog/assets/js/21.9266840a.js"><link rel="prefetch" href="/blog/assets/js/22.b62e8f4a.js"><link rel="prefetch" href="/blog/assets/js/23.4a3ae109.js"><link rel="prefetch" href="/blog/assets/js/24.cea5c6c5.js"><link rel="prefetch" href="/blog/assets/js/25.1fca3e8c.js"><link rel="prefetch" href="/blog/assets/js/27.1b8292e7.js"><link rel="prefetch" href="/blog/assets/js/28.1d5e2edf.js"><link rel="prefetch" href="/blog/assets/js/29.e8700342.js"><link rel="prefetch" href="/blog/assets/js/3.3692318b.js"><link rel="prefetch" href="/blog/assets/js/30.9eca39c6.js"><link rel="prefetch" href="/blog/assets/js/4.82a020f0.js"><link rel="prefetch" href="/blog/assets/js/5.41beb069.js"><link rel="prefetch" href="/blog/assets/js/6.e8cd7694.js"><link rel="prefetch" href="/blog/assets/js/7.6b1babaf.js"><link rel="prefetch" href="/blog/assets/js/8.9eb0f85d.js"><link rel="prefetch" href="/blog/assets/js/9.d9d6b09e.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.b6bfb1ac.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">Saul Shen's blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="使用-pipenv-来管理项目依赖"><a href="#使用-pipenv-来管理项目依赖" class="header-anchor">#</a> 使用 pipenv 来管理项目依赖</h1> <blockquote><p><code>2019-05-26</code> by <code>Saul Shen</code></p></blockquote> <h1 id="介绍"><a href="#介绍" class="header-anchor">#</a> 介绍</h1> <p>pipenv 是类似于 yarn 的 python 项目依赖管理工具</p> <h1 id="pip-的缺点"><a href="#pip-的缺点" class="header-anchor">#</a> pip 的缺点</h1> <ul><li>pip 安装的包类似全局安装，所有的项目共享，若果不同的项目用了不同版本的包，就是个麻烦</li> <li>安装包的时候，连带包的依赖都会放在一级目录下，这样删起来就很麻烦</li> <li>为了解决 pip 的问题，出现了 virtualenv, 来给每个项目一个独立的环境</li></ul> <h1 id="pipenv-的优点"><a href="#pipenv-的优点" class="header-anchor">#</a> pipenv 的优点</h1> <ul><li>解决了 pip 遇到的问题</li> <li>结合了 pip 和 virtualenv, 并且是全自动化的</li> <li>有 Pipfile 和 Pipfile.lock 文件，保证项目的一致性</li></ul> <h1 id="安装"><a href="#安装" class="header-anchor">#</a> 安装</h1> <p><code>brew install pipenv</code></p> <h1 id="常用命令"><a href="#常用命令" class="header-anchor">#</a> 常用命令</h1> <h2 id="pipenv-install"><a href="#pipenv-install" class="header-anchor">#</a> <code>pipenv install</code></h2> <p>安装 Pipfile 里的全部依赖，没有虚拟环境的话，会自动创建一个虚拟环境</p> <h2 id="pipenv-install-flask"><a href="#pipenv-install-flask" class="header-anchor">#</a> <code>pipenv install flask</code></h2> <p>安装某个包</p> <h2 id="pipenv-install-flask-dev"><a href="#pipenv-install-flask-dev" class="header-anchor">#</a> <code>pipenv install flask --dev</code></h2> <p>安装开发需要的包</p> <h2 id="pipenv-lock"><a href="#pipenv-lock" class="header-anchor">#</a> <code>pipenv lock</code></h2> <p>生成 lock 文件</p> <h2 id="pipenv-uninstall-flask"><a href="#pipenv-uninstall-flask" class="header-anchor">#</a> <code>pipenv uninstall flask</code></h2> <p>删除某个包</p> <h2 id="pipenv-run-cmd"><a href="#pipenv-run-cmd" class="header-anchor">#</a> <code>pipenv run &lt;cmd&gt;</code></h2> <p>运行 Pipfile 中的某个命令，类似 yarn run</p> <h1 id="pipfile"><a href="#pipfile" class="header-anchor">#</a> Pipfile</h1> <h2 id="介绍-2"><a href="#介绍-2" class="header-anchor">#</a> 介绍</h2> <p>Pipfile 大概长这样</p> <div class="language- extra-class"><pre class="language-text"><code>[[source]]
+url = &quot;http://mirrors.aliyun.com/pypi/simple/&quot;
+verify_ssl = false
+name = &quot;pypi&quot;
+
+[scripts]
+dev = &quot;bash -c 'export FLASK_APP=./src/index.py; flask run'&quot;
+
+[dev-packages]
+pylint = &quot;*&quot;
+autopep8 = &quot;*&quot;
+
+[packages]
+easyquotation = &quot;*&quot;
+flask = &quot;*&quot;
+json = &quot;*&quot;
+
+[requires]
+python_version = &quot;3.7&quot;
+</code></pre></div><h2 id="source"><a href="#source" class="header-anchor">#</a> source</h2> <p>source 中的 url 可以改成阿里的地址来加快下载速度</p> <h2 id="scripts"><a href="#scripts" class="header-anchor">#</a> scripts</h2> <p>这里定义一些自定义的命令</p> <h2 id="packages"><a href="#packages" class="header-anchor">#</a> packages</h2> <p>生产依赖</p> <h2 id="dev-packages"><a href="#dev-packages" class="header-anchor">#</a> dev-packages</h2> <p>开发依赖</p> <h1 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h1> <p>其实跟 yarn 还是很像的</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/blog/assets/js/app.4fe4e32b.js" defer></script><script src="/blog/assets/js/2.6fe09025.js" defer></script><script src="/blog/assets/js/26.20a38b6d.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>使用 Enzyme 测试 react-redux-app | Saul Shen&#39;s blog</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="Keep simple, keep happy">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.b6bfb1ac.css" as="style"><link rel="preload" href="/blog/assets/js/app.4fe4e32b.js" as="script"><link rel="preload" href="/blog/assets/js/2.6fe09025.js" as="script"><link rel="preload" href="/blog/assets/js/21.9266840a.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.530dcc5b.js"><link rel="prefetch" href="/blog/assets/js/11.4d53f011.js"><link rel="prefetch" href="/blog/assets/js/12.045882ce.js"><link rel="prefetch" href="/blog/assets/js/13.6645e80b.js"><link rel="prefetch" href="/blog/assets/js/14.d555f6c2.js"><link rel="prefetch" href="/blog/assets/js/15.4161ee70.js"><link rel="prefetch" href="/blog/assets/js/16.3672a1d7.js"><link rel="prefetch" href="/blog/assets/js/17.0127db4b.js"><link rel="prefetch" href="/blog/assets/js/18.291a8fd7.js"><link rel="prefetch" href="/blog/assets/js/19.57cab65a.js"><link rel="prefetch" href="/blog/assets/js/20.5789a416.js"><link rel="prefetch" href="/blog/assets/js/22.b62e8f4a.js"><link rel="prefetch" href="/blog/assets/js/23.4a3ae109.js"><link rel="prefetch" href="/blog/assets/js/24.cea5c6c5.js"><link rel="prefetch" href="/blog/assets/js/25.1fca3e8c.js"><link rel="prefetch" href="/blog/assets/js/26.20a38b6d.js"><link rel="prefetch" href="/blog/assets/js/27.1b8292e7.js"><link rel="prefetch" href="/blog/assets/js/28.1d5e2edf.js"><link rel="prefetch" href="/blog/assets/js/29.e8700342.js"><link rel="prefetch" href="/blog/assets/js/3.3692318b.js"><link rel="prefetch" href="/blog/assets/js/30.9eca39c6.js"><link rel="prefetch" href="/blog/assets/js/4.82a020f0.js"><link rel="prefetch" href="/blog/assets/js/5.41beb069.js"><link rel="prefetch" href="/blog/assets/js/6.e8cd7694.js"><link rel="prefetch" href="/blog/assets/js/7.6b1babaf.js"><link rel="prefetch" href="/blog/assets/js/8.9eb0f85d.js"><link rel="prefetch" href="/blog/assets/js/9.d9d6b09e.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.b6bfb1ac.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">Saul Shen's blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="使用-enzyme-测试-react-redux-app"><a href="#使用-enzyme-测试-react-redux-app" class="header-anchor">#</a> 使用 Enzyme 测试 react-redux-app</h1> <blockquote><p><code>2018-11-23</code> by <code>Saul Shen</code></p></blockquote> <h2 id="使用-enzyme-测试-react-redux-app-接上一篇"><a href="#使用-enzyme-测试-react-redux-app-接上一篇" class="header-anchor">#</a> 使用 Enzyme 测试 react-redux-app(接上一篇)</h2> <p>使用 enzyme+jest 可以很方便的来测试我们的 react 应用</p> <h2 id="测试需要关注哪些方面"><a href="#测试需要关注哪些方面" class="header-anchor">#</a> 测试需要关注哪些方面</h2> <ul><li> 页面的结构的测试（一般是去  判断 dom 结构对不对）</li> <li>样式的测试（这个比较复杂，可能需要我们去截图对比，简单点的做法，就直接对比样式代码是否有变更，这个只对 inline-style 有效）</li> <li>交互的测试（ 测试一些交互能否正常被触发）</li></ul> <h3 id="安装依赖"><a href="#安装依赖" class="header-anchor">#</a> 安装依赖</h3> <div class="language- extra-class"><pre class="language-text"><code>yarn add -D enzyme enzyme-adapter-react-16 @types/enzyme @types/enzyme-adapter-react-16
+</code></pre></div><h3 id="设置启动文件"><a href="#设置启动文件" class="header-anchor">#</a> 设置启动文件</h3> <p>按照 enzyme 文档，测试前是需要做一些准备工作的， 所以我们在根目录下添加<code>test.setup.ts</code></p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// test.setup.ts</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> configure <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'enzyme'</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> Adapter <span class="token keyword">from</span> <span class="token string">'enzyme-adapter-react-16'</span>
+
+<span class="token function">configure</span><span class="token punctuation">(</span><span class="token punctuation">{</span> adapter<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Adapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>同时修改<code>jest.config.js</code>文件</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  preset<span class="token operator">:</span> <span class="token string">'ts-jest'</span><span class="token punctuation">,</span>
+  testEnvironment<span class="token operator">:</span> <span class="token string">'node'</span><span class="token punctuation">,</span>
+  setupTestFrameworkScriptFile<span class="token operator">:</span> <span class="token string">'&lt;rootDir&gt;/test.setup.ts'</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="模拟浏览器环境"><a href="#模拟浏览器环境" class="header-anchor">#</a> 模拟浏览器环境</h3> <p>react 应用运行的时候是在浏览器环境，但是我们测试的时候是在 node 环境，所以需要我们模拟出浏览器环境才能正确的运行测试。之前的做法是在无头浏览器中跑测试代码，但现在我们有一个更好的、更轻量的方法，就是使用<code>jsdom</code>。</p> <h4 id="安装-jsdom"><a href="#安装-jsdom" class="header-anchor">#</a> 安装 jsdom</h4> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">yarn</span> <span class="token function">add</span> -D jsdom @types/jsdom
+
+<span class="token comment"># 顺带安装一下requestAnimation的模拟,react需要</span>
+<span class="token function">yarn</span> <span class="token function">add</span> -D raf
+</code></pre></div><h4 id="修改test-setup-ts"><a href="#修改test-setup-ts" class="header-anchor">#</a> 修改<code>test.setup.ts</code></h4> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> <span class="token string">'raf/polyfill'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> configure <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'enzyme'</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> Adapter <span class="token keyword">from</span> <span class="token string">'enzyme-adapter-react-16'</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> jsdom <span class="token keyword">from</span> <span class="token string">'jsdom'</span>
+
+<span class="token keyword">const</span> <span class="token punctuation">{</span> window <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">jsdom<span class="token punctuation">.</span>JSDOM</span><span class="token punctuation">(</span><span class="token string">'&lt;!doctype html&gt;&lt;html&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;'</span><span class="token punctuation">)</span>
+
+global<span class="token punctuation">.</span>window <span class="token operator">=</span> window
+global<span class="token punctuation">.</span>document <span class="token operator">=</span> window<span class="token punctuation">.</span>document
+
+<span class="token function">configure</span><span class="token punctuation">(</span><span class="token punctuation">{</span> adapter<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Adapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="编写测试"><a href="#编写测试" class="header-anchor">#</a> 编写测试</h2> <h3 id="测试简单的组件"><a href="#测试简单的组件" class="header-anchor">#</a>  测试简单的组件</h3> <p>我们先写一个测试文件测一个简单的组件<code>test/BtnBack.test.ts</code></p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">/**
+ * 返回按钮
+ */</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> React <span class="token keyword">from</span> <span class="token string">'react'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Button <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'antd'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ButtonProps <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'antd/lib/button'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> win <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'../../util'</span>
+
+<span class="token keyword">const</span> BtnBack<span class="token operator">:</span> React<span class="token punctuation">.</span><span class="token constant">SFC</span><span class="token operator">&lt;</span>ButtonProps<span class="token operator">&gt;</span> <span class="token operator">=</span> <span class="token parameter">props</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
+  <span class="token operator">&lt;</span>Button onClick<span class="token operator">=</span><span class="token punctuation">{</span>win<span class="token punctuation">.</span>goBack<span class="token punctuation">}</span> <span class="token punctuation">{</span><span class="token operator">...</span>props<span class="token punctuation">}</span><span class="token operator">&gt;</span>
+    返回
+  <span class="token operator">&lt;</span><span class="token operator">/</span>Button<span class="token operator">&gt;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> BtnBack
+</code></pre></div><div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> React <span class="token keyword">from</span> <span class="token string">'react'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> shallow <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'enzyme'</span>
+<span class="token keyword">import</span> BtnBack <span class="token keyword">from</span> <span class="token string">'../../src/components/BtnBack'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Button <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'antd'</span>
+
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'&lt;BtnBack /&gt;'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> wrapper <span class="token operator">=</span> <span class="token function">shallow</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>BtnBack <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">)</span>
+
+  <span class="token comment">// 这部分是 结构测试</span>
+  <span class="token keyword">const</span> props <span class="token operator">=</span> wrapper<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>Button<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">props</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  <span class="token function">expect</span><span class="token punctuation">(</span>props<span class="token punctuation">.</span>children<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toEqual</span><span class="token punctuation">(</span><span class="token string">'返回'</span><span class="token punctuation">)</span>
+
+  <span class="token comment">// 这部分是 交互测试</span>
+  global<span class="token punctuation">.</span>window <span class="token operator">=</span> <span class="token punctuation">{</span>
+    history<span class="token operator">:</span> <span class="token punctuation">{</span>
+      back<span class="token operator">:</span> jest<span class="token punctuation">.</span><span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  wrapper<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>Button<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">simulate</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">)</span>
+
+  <span class="token function">expect</span><span class="token punctuation">(</span>global<span class="token punctuation">.</span>window<span class="token punctuation">.</span>history<span class="token punctuation">.</span>back<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBeCalled</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>done! 是不是很简单。</p> <h3 id="测试-connected-组件"><a href="#测试-connected-组件" class="header-anchor">#</a> 测试 connected 组件</h3> <p>测试 connected 组件有两种方法。</p> <ul><li>一种是使用<a href="https://airbnb.io/enzyme/docs/api/ShallowWrapper/dive.html" target="_blank" rel="noopener noreferrer">dive<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>方法，dive 能剥离  第一层组件，返回 connected 组件里第一个非 dom 的 child-node，也就是我们自己写的组件，然后就像测一个简单组件一样去测  这个组件。当然，测试的时候需要模拟出 connected 产生的一些 props。</li> <li>另一种就是模拟出 redux-store，我用的是这种</li></ul> <h4 id="安装-mock-store"><a href="#安装-mock-store" class="header-anchor">#</a> 安装 mock-store</h4> <div class="language- extra-class"><pre class="language-text"><code>yarn add -D redux-mock-store @types/redux-mock-store
+</code></pre></div><h4 id="编写测试-2"><a href="#编写测试-2" class="header-anchor">#</a> 编写测试</h4> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> React <span class="token keyword">from</span> <span class="token string">'react'</span>
+<span class="token keyword">import</span> Selector <span class="token keyword">from</span> <span class="token string">'../../src/components/Selector'</span>
+<span class="token keyword">import</span> configureStore <span class="token keyword">from</span> <span class="token string">'redux-mock-store'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> mount <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'enzyme'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Select <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'antd'</span>
+
+<span class="token keyword">const</span> middlewares <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">const</span> mockStore <span class="token operator">=</span> <span class="token function">configureStore</span><span class="token punctuation">(</span>middlewares<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> initState <span class="token operator">=</span> <span class="token punctuation">{</span>
+  dataList<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      value<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      desc<span class="token operator">:</span> <span class="token string">'1'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      value<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+      desc<span class="token operator">:</span> <span class="token string">'2'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">mockStore</span><span class="token punctuation">(</span>initState<span class="token punctuation">)</span>
+
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'loadActin: Function, dataSouce: any'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> count <span class="token operator">=</span> <span class="token number">0</span>
+
+  <span class="token keyword">const</span> <span class="token function-variable function">loadAction</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    count<span class="token operator">++</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      type<span class="token operator">:</span> <span class="token string">'TEST'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">const</span> wrapper <span class="token operator">=</span> <span class="token function">mount</span><span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>Selector
+      loadAction<span class="token operator">=</span><span class="token punctuation">{</span>loadAction<span class="token punctuation">}</span>
+      statePicker<span class="token operator">=</span><span class="token punctuation">{</span><span class="token parameter">state</span> <span class="token operator">=&gt;</span> state<span class="token punctuation">.</span>dataList<span class="token punctuation">}</span>
+      store<span class="token operator">=</span><span class="token punctuation">{</span>store<span class="token punctuation">}</span>
+    <span class="token operator">&gt;</span>
+      <span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token parameter">dataSource<span class="token punctuation">,</span> Option</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> dataSource<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">e<span class="token operator">:</span> any<span class="token punctuation">,</span> i<span class="token operator">:</span> number</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span>
+          <span class="token operator">&lt;</span>Option key<span class="token operator">=</span><span class="token punctuation">{</span>i<span class="token punctuation">}</span> value<span class="token operator">=</span><span class="token punctuation">{</span>e<span class="token punctuation">.</span>value<span class="token punctuation">}</span><span class="token operator">&gt;</span>
+            <span class="token punctuation">{</span>e<span class="token punctuation">.</span>desc<span class="token punctuation">}</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>Option<span class="token operator">&gt;</span>
+        <span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">}</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>Selector<span class="token operator">&gt;</span>
+  <span class="token punctuation">)</span>
+
+  <span class="token comment">// action 被调用</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+  <span class="token comment">// 渲染出正确的option 数量</span>
+  <span class="token keyword">const</span> opts <span class="token operator">=</span> wrapper<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>Select<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">prop</span><span class="token punctuation">(</span><span class="token string">'children'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> any<span class="token punctuation">[</span><span class="token punctuation">]</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span>opts<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>done! 是不是也很简单。</p> <h3 id="其他例子"><a href="#其他例子" class="header-anchor">#</a> 其他例子</h3> <p>大部分测试情况，都能在 enzyme 的文档中找到例子，我这边只是简单的介绍一下，enzyme 如何使用。</p> <h3 id="测试覆盖率"><a href="#测试覆盖率" class="header-anchor">#</a> 测试覆盖率</h3> <p>测试覆盖率是评价测试一个很重要的指标，我们可以通过<code>yarn jest --coverage</code>生成测试报告，查看代码中没有被测试到的分支，一点点的提高测试覆盖率</p> <h2 id="最后"><a href="#最后" class="header-anchor">#</a> 最后</h2> <p>可能大部分项目碍于各种情况，时间不够，需求变化太快等等，放弃编写测试，全部交给测试人员去测。但是，写不写测试是一回事，会不会写测试是另一会事。
+希望各位在这又收获了一点小知识。😃</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/blog/assets/js/app.4fe4e32b.js" defer></script><script src="/blog/assets/js/2.6fe09025.js" defer></script><script src="/blog/assets/js/21.9266840a.js" defer></script>
+  </body>
+</html>
