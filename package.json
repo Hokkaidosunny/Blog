@@ -5,6 +5,7 @@
   "author": "shenshuaijia <shen_shuaijia@163.com>",
   "license": "MIT",
   "scripts": {
+    "start": "yarn docs:dev",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
